@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Theatre</title>
+    <style>
+        .movie {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .movie-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .button {
+            padding: 5px 10px;
+            margin-left: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button.buy {
+            background-color: #28a745;
+        }
+        #theatre-selector {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Theatre Selection</h1>
+    <div id="theatre-selector">
+        <label for="theatre-select">Choose a theatre:</label>
+        <select id="theatre-select">
+            <option value="">--Please choose a theatre--</option>
+            <option value="theatre1">Theatre 1</option>
+            <option value="theatre2">Theatre 2</option>
+            <option value="theatre3">Theatre 3</option>
+        </select>
+    </div>
+    <div id="movies"></div>
+
+    <script>
+        const theatreSelect = document.getElementById('theatre-select');
+        const moviesContainer = document.getElementById('movies');
+
+        theatreSelect.addEventListener('change', function() {
+            const selectedTheatre = this.value;
+            if (selectedTheatre) {
+                fetchMoviesForTheatre(selectedTheatre);
+            } else {
+                moviesContainer.innerHTML = '';
+            }
+        });
+
+        function fetchMoviesForTheatre(theatre) {
+            // In a real application, you would fetch theatre-specific data from the server
+            // For this example, we'll simulate different movie lists for each theatre
+            fetch('movies.json')
+                .then(response => response.json())
+                .then(allMovies => {
+                    let movies;
+                    switch(theatre) {
+                        case 'theatre1':
+                            movies = allMovies.slice(0, 3); // First 3 movies
+                            break;
+                        case 'theatre2':
+                            movies = allMovies.slice(2, 5); // Movies 3-5
+                            break;
+                        case 'theatre3':
+                            movies = allMovies.slice(4); // Remaining movies
+                            break;
+                        default:
+                            movies = [];
+                    }
+                    displayMovies(movies);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayMovies(movies) {
+            moviesContainer.innerHTML = '<h2>Now Showing</h2>';
+            movies.forEach(movie => {
+                const movieElement = document.createElement('div');
+                movieElement.className = 'movie';
+                movieElement.innerHTML = `
+                    <span class="movie-title">${movie.title}</span>
+                    <div>
+                        <button class="button" onclick="showMovieDetails(${movie.id})">View Details</button>
+                        <button class="button buy" onclick="buyTicket(${movie.id})">Buy Ticket</button>
+                    </div>
+                `;
+                moviesContainer.appendChild(movieElement);
+            });
+        }
+        function showMovieDetails(movieId) {
+            window.location.href = `movie-details.html?id=${movieId}`;
+        }
+
+        function buyTicket(movieId) {
+            window.location.href = `buy-ticket.html?id=${movieId}`;
+        }
+    </script>
+</body>
+</html>
+
