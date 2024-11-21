@@ -1,0 +1,35 @@
+
+[
+  {
+    "id": 1,
+    "title": "Inception",
+    "genre": ["Sci-Fi", "Thriller"],
+    "rating": 8.8,
+    "runtime": "148 min",
+    "releaseDate": "2010-07-16",
+    "description": "A thief who steals corporate secrets through the use of dream-sharing technology...",
+    "showtimes": ["2:00 PM", "5:00 PM", "8:00 PM"]
+  },
+  {
+    "id": 2,
+    "title": "The Dark Knight",
+    "genre": ["Action", "Crime"],
+    "rating": 9.0,
+    "runtime": "152 min",
+    "releaseDate": "2008-07-18",
+    "description": "When the menace known as the Joker emerges from his mysterious past...",
+    "showtimes": ["3:00 PM", "6:00 PM", "9:00 PM"]
+  },
+  {
+    "id": 3,
+    "title": "Pulp Fiction",
+    "genre": ["Crime", "Drama"],
+    "rating": 8.9,
+    "runtime": "154 min",
+    "releaseDate": "1994-10-14",
+    "description": "The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    "showtimes": ["4:00 PM", "7:00 PM", "10:00 PM"]
+  }
+]
+
+  

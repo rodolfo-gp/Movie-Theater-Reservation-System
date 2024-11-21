@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <style>
+        .movie-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="movie-details" class="movie-details"></div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('movieId');
+        const theatreId = urlParams.get('theatreId');
+
+        Promise.all([
+            fetch('movies.json').then(response => response.json()),
+            fetch('theatres.json').then(response => response.json())
+        ]).then(([movies, theatres]) => {
+            const movie = movies.find(m => m.id == movieId);
+            const theatre = theatres.find(t => t.id == theatreId);
+
+            if (movie && theatre) {
+                const detailsContainer = document.getElementById('movie-details');
+                detailsContainer.innerHTML = `
+                    <h1>${movie.title}</h1>
+                    <p>Theatre: ${theatre.name}</p>
+                    <p>Genre: ${movie.genre.join(', ')}</p>
+                    <p>Rating: ${movie.rating}</p>
+                    <p>Runtime: ${movie.runtime}</p>
+                    <p>Release Date: ${movie.releaseDate}</p>
+                    <p>Description: ${movie.description}</p>
+                    <h3>Showtimes:</h3>
+                    <ul>
+                        ${movie.showtimes.map(time => `<li>${time}</li>`).join('')}
+                    </ul>
+                    <a href="index.html">Back to Theatres</a>
+                `;
+            } else {
+                document.body.innerHTML = '<p>Movie or Theatre not found</p>';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
+

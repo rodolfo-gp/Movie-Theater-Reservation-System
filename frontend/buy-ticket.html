@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Ticket</title>
+    <style>
+        .ticket-form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, button {
+            width: 100%;
+            padding: 8px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="ticket-form">
+        <h1>Buy Ticket</h1>
+        <div id="movie-info"></div>
+        <form id="ticket-form">
+            <div class="form-group">
+                <label for="showtime">Select Showtime:</label>
+                <select id="showtime" required></select>
+            </div>
+            <button type="submit">Purchase Ticket</button>
+        </form>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieId = urlParams.get('id');
+
+        fetch('movies.json')
+            .then(response => response.json())
+            .then(movies => {
+                const movie = movies.find(m => m.id == movieId);
+                if (movie) {
+                    document.getElementById('movie-info').innerHTML = `
+                        <h2>${movie.title}</h2>
+                        <p>Runtime: ${movie.runtime}</p>
+                    `;
+
+                    const showtimeSelect = document.getElementById('showtime');
+                    movie.showtimes.forEach(time => {
+                        const option = document.createElement('option');
+                        option.value = time;
+                        option.textContent = time;
+                        showtimeSelect.appendChild(option);
+                    });
+                } else {
+                    document.body.innerHTML = '<p>Movie not found</p>';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+
+        document.getElementById('ticket-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const selectedShowtime = document.getElementById('showtime').value;
+            alert(`Ticket purchased for ${selectedShowtime}`);
+            // Here you would typically send the purchase information to your backend
+        });
+    </script>
+</body>
+</html>
