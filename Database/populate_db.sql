@@ -1,0 +1,58 @@
+USE ensf480_term_project_movies_db;
+
+-- Insert data into Provinces
+INSERT INTO Provinces (province_name, sale_tax, country)
+VALUES 
+    ('Alberta', 5.00, 'Canada'),
+    ('British Columbia', 7.00, 'Canada'),
+    ('Ontario', 13.00, 'Canada');
+
+-- Insert data into Theaters
+INSERT INTO Theaters (theater_name, theater_address, theater_city, province_name)
+VALUES 
+    ('Cineplex Calgary', '123 Main St', 'Calgary', 'Alberta'),
+    ('Landmark Vancouver', '456 Granville St', 'Vancouver', 'British Columbia'),
+    ('Cineplex Toronto', '789 Yonge St', 'Toronto', 'Ontario');
+
+-- Insert data into Movies
+INSERT INTO Movies (movie_name, director, release_date)
+VALUES 
+    ('Inception', 'Christopher Nolan', '2010-07-16'),
+    ('The Matrix', 'Lana Wachowski, Lilly Wachowski', '1999-03-31'),
+    ('Avengers: Endgame', 'Anthony Russo, Joe Russo', '2019-04-26');
+
+-- Insert data into Showrooms
+INSERT INTO Showrooms (showroom_id, theater_id, num_rows, num_columns)
+VALUES 
+    (1, 1, 10, 15), -- Showroom 1 in Theater 1
+    (2, 1, 8, 12),  -- Showroom 2 in Theater 1
+    (1, 2, 12, 20), -- Showroom 1 in Theater 2
+    (1, 3, 15, 25); -- Showroom 1 in Theater 3
+
+-- Insert data into Shows
+INSERT INTO Shows (theater_id, showroom_id, movie_name, date_and_time, seat_map)
+VALUES 
+    (1, 1, 'Inception', '2024-11-25 18:00:00+00', JSON_ARRAY()),
+    (1, 2, 'The Matrix', '2024-11-26 20:00:00+00', JSON_ARRAY()),
+    (2, 1, 'Avengers: Endgame', '2024-11-27 15:30:00+00', JSON_ARRAY());
+
+-- Insert data into Registered_Users
+INSERT INTO Registered_Users (email, username, pass_word, last_name, first_name)
+VALUES 
+    ('jdoe@example.com', 'jdoe', 'password123', 'Doe', 'John'),
+    ('asmith@example.com', 'asmith', 'mypassword', 'Smith', 'Alice'),
+    ('bwhite@example.com', 'bwhite', 'securepass', 'White', 'Brian');
+
+-- Insert data into CreditCards
+INSERT INTO CreditCards (CardNumber, ExpirationDate, CVV, email)
+VALUES 
+    ('1234567890123456', '2026-12-31', 123, 'jdoe@example.com'),
+    ('9876543210987654', '2025-08-15', 456, 'asmith@example.com'),
+    ('1111222233334444', '2027-05-20', 789, 'jdoe@example.com'); -- Multiple cards for one user
+
+-- Insert data into Tickets
+INSERT INTO Tickets (seat_row, seat_column, show_id, Customer_email)
+VALUES 
+    (5, 6, 1, 'jdoe@example.com'), -- John Doe buys a ticket for Show 1
+    (7, 8, 2, 'asmith@example.com'), -- Alice Smith buys a ticket for Show 2
+    (10, 15, 3, NULL); -- Anonymous customer buys a ticket for Show 3
