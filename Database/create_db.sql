@@ -7,7 +7,7 @@ USE ensf480_term_project_movies_db;
 DROP TABLE IF EXISTS Provinces;
 CREATE TABLE Provinces (
     province_name VARCHAR(255) NOT NULL, -- PK
-    sale_tax DECIMAL(4, 2),
+    sale_tax_percent DECIMAL(5, 2),
     country VARCHAR(255),
     PRIMARY KEY (province_name)
 );
