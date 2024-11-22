@@ -3,16 +3,17 @@ CREATE DATABASE ensf480_term_project_movies_db;
 
 USE ensf480_term_project_movies_db;
 
-
+-- Create Provinces table
 DROP TABLE IF EXISTS Provinces;
 CREATE TABLE Provinces (
     province_name VARCHAR(255) NOT NULL, -- PK
     sale_tax_percent DECIMAL(5, 2),
     country VARCHAR(255),
+    currency VARCHAR(10),
     PRIMARY KEY (province_name)
 );
 
-
+-- Create Theaters table
 DROP TABLE IF EXISTS Theaters;
 CREATE TABLE Theaters (
     theater_id INT NOT NULL AUTO_INCREMENT, -- PK
@@ -24,7 +25,7 @@ CREATE TABLE Theaters (
     CONSTRAINT fk_province_name FOREIGN KEY (province_name) REFERENCES Provinces(province_name)
 );
 
-
+-- Create Movies table
 DROP TABLE IF EXISTS Movies;
 CREATE TABLE Movies (
     movie_name VARCHAR(255) NOT NULL, -- PK
@@ -33,6 +34,7 @@ CREATE TABLE Movies (
     PRIMARY KEY (movie_name)
 );
 
+-- Create Showrooms table
 DROP TABLE IF EXISTS Showrooms;
 CREATE TABLE Showrooms (
     showroom_id SMALLINT NOT NULL, -- Part of composite primary key
@@ -43,31 +45,22 @@ CREATE TABLE Showrooms (
     CONSTRAINT fk_theater FOREIGN KEY (theater_id) REFERENCES Theaters(theater_id)
 );
 
-
+-- Create Shows table (create before any other tables referencing it)
 DROP TABLE IF EXISTS Shows;
 CREATE TABLE Shows (
     show_id INT AUTO_INCREMENT PRIMARY KEY,
+    ticket_price DECIMAL(10, 2),
     theater_id INT NOT NULL,
     showroom_id SMALLINT NOT NULL,
     movie_name VARCHAR(255) NOT NULL,
-    date_and_time TIMESTAMP WITH TIME ZONE,
+    date_and_time TIMESTAMP, -- Removed WITH TIME ZONE
     seat_map JSON NOT NULL, -- Use JSON for seat mapping
     CONSTRAINT fk_theater_id FOREIGN KEY (theater_id) REFERENCES Theaters(theater_id),
     CONSTRAINT fk_showroom_id FOREIGN KEY (showroom_id) REFERENCES Showrooms(showroom_id),
-    fk_movie_name FOREIGN KEY (movie_name) REFERENCES Movies(movie_name)
+    CONSTRAINT fk_movie_name FOREIGN KEY (movie_name) REFERENCES Movies(movie_name) -- Reference to Movies table
 );
 
-DROP TABLE IF EXISTS Tickets;
-CREATE TABLE Tickets (
-    ticket_id INT AUTO_INCREMENT PRIMARY KEY,
-    seat_row SMALLINT,
-    seat_column SMALLINT,
-    show_id INT NOT NULL,
-    Customer_email VARCHAR(255), -- Can be NULL
-    FOREIGN KEY (Customer_email) REFERENCES Registered_Users(email),
-    FOREIGN KEY (show_id) REFERENCES Shows(show_id)
-);
-
+-- Create Registered_Users table (must be created before Tickets)
 DROP TABLE IF EXISTS Registered_Users;
 CREATE TABLE Registered_Users (
     email VARCHAR(255) NOT NULL, -- PK
@@ -78,6 +71,19 @@ CREATE TABLE Registered_Users (
     PRIMARY KEY (email)
 );
 
+-- Create Tickets table (must reference Shows and Registered_Users after they're created)
+DROP TABLE IF EXISTS Tickets;
+CREATE TABLE Tickets (
+    ticket_id INT AUTO_INCREMENT PRIMARY KEY,
+    seat_row SMALLINT,
+    seat_column SMALLINT,
+    show_id INT NOT NULL,
+    Customer_email VARCHAR(255), -- Can be NULL
+    FOREIGN KEY (Customer_email) REFERENCES Registered_Users(email),
+    FOREIGN KEY (show_id) REFERENCES Shows(show_id) -- Reference to Shows table
+);
+
+-- Create CreditCards table
 DROP TABLE IF EXISTS CreditCards;
 CREATE TABLE CreditCards (
     CardId INT AUTO_INCREMENT PRIMARY KEY,
