@@ -2,6 +2,8 @@ package src;
 import java.awt.*;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MoviePage implements BaseWindow {
     
@@ -17,47 +19,63 @@ public class MoviePage implements BaseWindow {
         JPanel moviePanel = new JPanel();
         moviePanel.setLayout(new BoxLayout(moviePanel, BoxLayout.Y_AXIS));
 
+        //test with mock array list
+
         ArrayList<String> movies = new ArrayList<String>();
-        movies.add("Greg");
+        movies.add("Deadpool");
         movies.add("Boss Baby");
         movies.add("Shrek");
+        movies.add("Cars");
+        movies.add("The Lego Movie");
 
         for (String movie : movies) {
-            JPanel movieItem = createMovieItem(movie);
-            moviePanel.add(movieItem);
+
+            JPanel row = new JPanel(new BorderLayout());
+            row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+            JLabel name = new JLabel(movie);
+            name.setPreferredSize(new Dimension(100, 30));
+            row.add(name, BorderLayout.WEST);
+
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+            JButton detailButton = new JButton("deez nuts");
+            detailButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Button pressed");
+                }
+            });
+
+            JButton buyTicketButton = new JButton("Buy Ticket");
+            buyTicketButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    SeatWindow seatMap = new SeatWindow();
+                    seatMap.createWindow();
+                }
+            });
+
+            buttonPanel.add(detailButton);
+            buttonPanel.add(buyTicketButton);
+
+            row.add(buttonPanel, BorderLayout.CENTER);
+
+            row.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+
+            moviePanel.add(row);
+
         }
 
         JScrollPane scrollPane = new JScrollPane(moviePanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         // Add the scroll pane to the frame
-        moviePage.add(scrollPane, BorderLayout.CENTER);
+        moviePage.add(scrollPane);
 
         // Make the frame visible
         moviePage.setVisible(true);
-    }
-
-
-    private JPanel createMovieItem(String movieName) {
-            JPanel movieItem = new JPanel(new BorderLayout());
-            movieItem.setBorder(BorderFactory.createLineBorder(Color.GRAY));
-            movieItem.setPreferredSize(new Dimension(750, 50)); // Set size for uniformity
-    
-            JLabel movieLabel = new JLabel(movieName);
-            movieLabel.setFont(new Font("Arial", Font.PLAIN, 18));
-            movieLabel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-    
-            // Add components to the item panel
-            movieItem.add(movieLabel, BorderLayout.CENTER);
-    
-            return movieItem;
-        }
-    
-
-
-
-
-        
-    }
+    }     
+}
 
 
