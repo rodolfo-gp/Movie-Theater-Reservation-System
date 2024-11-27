@@ -1,8 +1,8 @@
 package com.example.spring_boot_ensf480_api_server.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+// import org.springframework.data.jpa.repository.Query;
+// import org.springframework.data.repository.query.Param;
 
 import com.example.spring_boot_ensf480_api_server.models.Show;
 
