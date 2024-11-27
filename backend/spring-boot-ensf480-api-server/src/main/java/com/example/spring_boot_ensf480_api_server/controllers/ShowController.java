@@ -10,7 +10,7 @@ import com.example.spring_boot_ensf480_api_server.models.Show;
 import com.example.spring_boot_ensf480_api_server.repositories.ShowRepository;
 
 @RestController
-@RequestMapping("shows")
+@RequestMapping("/shows")
 public class ShowController {
 
     private final ShowRepository showRepository;
@@ -23,4 +23,9 @@ public class ShowController {
     public List<Show> getAllShows() {
         return showRepository.findAll();
     }
+    @GetMapping("")
+    public List<Show> getAllShows_() {
+        return showRepository.findAll();
+    }
+
 }

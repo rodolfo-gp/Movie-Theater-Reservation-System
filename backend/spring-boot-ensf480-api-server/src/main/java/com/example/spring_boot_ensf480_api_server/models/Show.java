@@ -5,38 +5,38 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Shows")
+@Table(name = "Shows", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"show_id", "ticket_price"})
+})
 public class Show {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "show_id")
-    private Long id;
+    private Integer id;  // Using Integer for the INT AUTO_INCREMENT
 
-    @Column(name = "ticket_price", nullable = false)
-    private BigDecimal ticketPrice;
+    @Column(name = "ticket_price", nullable = false, precision = 10, scale = 2)
+    private BigDecimal ticketPrice;  // Represents DECIMAL(10, 2)
 
     @Column(name = "theater_id", nullable = false)
-    private int theaterId;
+    private int theaterId;  // Foreign key to Theaters table
 
     @Column(name = "showroom_id", nullable = false)
-    private short showroomId;
+    private short showroomId;  // Foreign key to Showrooms table
 
     @Column(name = "movie_name", nullable = false)
-    private String movieName;
+    private String movieName;  // Foreign key to Movies table
 
     @Column(name = "date_and_time")
-    private LocalDateTime dateAndTime;
-
-    @Column(name = "seat_map", columnDefinition = "JSON")
-    private String seatMap;
+    private LocalDateTime dateAndTime;  // Corresponds to TIMESTAMP
 
     // Getters and Setters
-    public Long getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -80,36 +80,26 @@ public class Show {
         this.dateAndTime = dateAndTime;
     }
 
-    public String getSeatMap() {
-        return seatMap;
-    }
-
-    public void setSeatMap(String seatMap) {
-        this.seatMap = seatMap;
-    }
-
-    // Default Constructor (No-args)
+    // Default Constructor
     public Show() {
     }
 
     // Constructor with all fields (except ID for new entries)
-    public Show(BigDecimal ticketPrice, int theaterId, short showroomId, String movieName, LocalDateTime dateAndTime, String seatMap) {
+    public Show(BigDecimal ticketPrice, int theaterId, short showroomId, String movieName, LocalDateTime dateAndTime) {
         this.ticketPrice = ticketPrice;
         this.theaterId = theaterId;
         this.showroomId = showroomId;
         this.movieName = movieName;
         this.dateAndTime = dateAndTime;
-        this.seatMap = seatMap;
     }
 
-    // Constructor with all fields (including ID, for updates or full initialization)
-    public Show(Long id, BigDecimal ticketPrice, int theaterId, short showroomId, String movieName, LocalDateTime dateAndTime, String seatMap) {
+    // Constructor with all fields (including ID for updates or full initialization)
+    public Show(Integer id, BigDecimal ticketPrice, int theaterId, short showroomId, String movieName, LocalDateTime dateAndTime) {
         this.id = id;
         this.ticketPrice = ticketPrice;
         this.theaterId = theaterId;
         this.showroomId = showroomId;
         this.movieName = movieName;
         this.dateAndTime = dateAndTime;
-        this.seatMap = seatMap;
     }
 }
