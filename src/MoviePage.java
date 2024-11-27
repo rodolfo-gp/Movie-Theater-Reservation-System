@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JComboBox;
 
 public class MoviePage implements BaseWindow {
     
@@ -27,6 +28,25 @@ public class MoviePage implements BaseWindow {
         movies.add("Shrek");
         movies.add("Cars");
         movies.add("The Lego Movie");
+        movies.add("Finding Fahmi");
+
+
+        //add theatres----
+        ArrayList<String> theatres = new ArrayList<String>();
+        theatres.add("Chungus");
+        theatres.add("That feeling when knee surgery tommorrow");
+        theatres.add("Bingus");
+        
+        JPanel theatrePanel = new JPanel();
+        theatrePanel.setLayout(new BorderLayout());
+
+        String[] theatresArray = new String[theatres.size()];
+        theatresArray = theatres.toArray(theatresArray);
+
+        JComboBox<String> theatreSelect = new JComboBox<String>(theatresArray);
+        theatrePanel.add(theatreSelect, BorderLayout.LINE_END);
+        moviePage.add(theatrePanel, BorderLayout.LINE_END);
+        //  end------
 
         for (String movie : movies) {
 
@@ -71,7 +91,7 @@ public class MoviePage implements BaseWindow {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         // Add the scroll pane to the frame
-        moviePage.add(scrollPane);
+        moviePage.add(scrollPane, BorderLayout.LINE_START);
 
         // Make the frame visible
         moviePage.setVisible(true);
