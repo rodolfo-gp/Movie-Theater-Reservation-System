@@ -45,7 +45,7 @@ CREATE TABLE Showrooms (
     CONSTRAINT fk_theater FOREIGN KEY (theater_id) REFERENCES Theaters(theater_id)
 );
 
--- Create Shows table (create before any other tables referencing it)
+-- Create Shows table
 DROP TABLE IF EXISTS Shows;
 CREATE TABLE Shows (
     show_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,34 +53,37 @@ CREATE TABLE Shows (
     theater_id INT NOT NULL,
     showroom_id SMALLINT NOT NULL,
     movie_name VARCHAR(255) NOT NULL,
-    date_and_time TIMESTAMP, -- Removed WITH TIME ZONE
-    seat_map JSON NOT NULL, -- Use JSON for seat mapping
+    date_and_time TIMESTAMP, 
     CONSTRAINT fk_theater_id FOREIGN KEY (theater_id) REFERENCES Theaters(theater_id),
-    CONSTRAINT fk_showroom_id FOREIGN KEY (showroom_id) REFERENCES Showrooms(showroom_id),
-    CONSTRAINT fk_movie_name FOREIGN KEY (movie_name) REFERENCES Movies(movie_name) -- Reference to Movies table
+    CONSTRAINT fk_showroom_id FOREIGN KEY (showroom_id, theater_id) REFERENCES Showrooms(showroom_id, theater_id),
+    CONSTRAINT fk_movie_name FOREIGN KEY (movie_name) REFERENCES Movies(movie_name),
+    -- Create unique index for ticket_price and show_id to support the foreign key in Tickets
+    UNIQUE (show_id, ticket_price)
 );
 
--- Create Registered_Users table (must be created before Tickets)
+-- Create Registered_Users table
 DROP TABLE IF EXISTS Registered_Users;
 CREATE TABLE Registered_Users (
     email VARCHAR(255) NOT NULL, -- PK
-    username VARCHAR(255) NOT NULL UNIQUE, -- Unique value
+    username VARCHAR(255) NOT NULL UNIQUE,
     pass_word VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
     PRIMARY KEY (email)
 );
 
--- Create Tickets table (must reference Shows and Registered_Users after they're created)
+-- Create Tickets table
 DROP TABLE IF EXISTS Tickets;
 CREATE TABLE Tickets (
     ticket_id INT AUTO_INCREMENT PRIMARY KEY,
     seat_row SMALLINT,
     seat_column SMALLINT,
     show_id INT NOT NULL,
+    ticket_price DECIMAL(10, 2) NOT NULL,
     Customer_email VARCHAR(255), -- Can be NULL
     FOREIGN KEY (Customer_email) REFERENCES Registered_Users(email),
-    FOREIGN KEY (show_id) REFERENCES Shows(show_id) -- Reference to Shows table
+    -- Foreign key now works because of the unique index in Shows table
+    FOREIGN KEY (show_id, ticket_price) REFERENCES Shows(show_id, ticket_price)
 );
 
 -- Create CreditCards table
