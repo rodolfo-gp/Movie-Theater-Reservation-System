@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Seat implements Serializable{
     @Id
-    private Long id;
+    private String id;
     private char seat_row;
     private int number;
     private boolean booked;
@@ -16,12 +16,13 @@ public class Seat implements Serializable{
     public Seat(){
         
     }
-    public Seat(char seat_row, int number) {
+  public Seat(int seat_row, int number, int showroom, int theater) {
+        //seat id = ,theater,showroom, row number, seat number
         this.seat_row = seat_row;
         this.number = number;
         this.booked = false;
+        id=Integer.toString(theater)+Integer.toString(showroom)+Integer.toString(seat_row)+Integer.toString(number);
     }
-
     public char getRow() {
         return this.seat_row;
     }
@@ -39,5 +40,8 @@ public class Seat implements Serializable{
     }
     public void setId(long id) {
         this.id = id;
+    }
+     public String getid(){
+        return this.id;
     }
 }
