@@ -1,4 +1,4 @@
-package src;
+package frontend;
 
 public interface BaseWindow {
     void createWindow();

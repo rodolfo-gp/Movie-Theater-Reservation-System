@@ -1,4 +1,4 @@
-package src;
+package frontend;
 public class Seat {
     private char row;
     private int number;

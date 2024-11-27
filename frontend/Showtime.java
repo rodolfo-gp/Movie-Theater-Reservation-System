@@ -1,4 +1,4 @@
-package src;
+package frontend;
 public class Showtime {
     private Date_time show_time;
     private int showroom_num;
