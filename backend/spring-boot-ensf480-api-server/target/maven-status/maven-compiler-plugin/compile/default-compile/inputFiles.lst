@@ -1,10 +1,13 @@
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\controllers\MovieController.java
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\controllers\SeatController.java
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\controllers\ShowController.java
+C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\controllers\UserController.java
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\models\Movie.java
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\models\Seat.java
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\models\Show.java
+C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\models\User.java
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\repositories\MovieRepository.java
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\repositories\SeatRepository.java
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\repositories\ShowRepository.java
+C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\repositories\UserRepository.java
 C:\Users\grayg\ENG\year3\ENSF480\ENSF480-Term-Project\backend\spring-boot-ensf480-api-server\src\main\java\com\example\spring_boot_ensf480_api_server\SpringBootEnsf480ApiServerApplication.java
