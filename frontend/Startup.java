@@ -53,7 +53,7 @@ public class Startup implements BaseWindow {
                 user.setEmail(email);
                 user.setPassword(password);
                 System.out.println("Attempting Login...");
-                RegisteredUser.logIn();
+                RegisteredUser.login();
                 if (user.get_is_logedIn()) {
                     System.out.println("login sucessful");
                     resultLabel.setText("login sucessful");
@@ -77,7 +77,7 @@ public class Startup implements BaseWindow {
                 boolean b = RegisteredUser.signUp();
                 if (b) {
                     System.out.println("signup sucessful");
-                    RegisteredUser.logIn();
+                    RegisteredUser.login();
                     resultLabel.setText("signup sucessful, you are now logged in");
                     
                 }else{
