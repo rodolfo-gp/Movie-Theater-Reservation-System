@@ -1,4 +1,9 @@
-To run this project;
-    1. enter the Database dir and follow the readme.md file instructions
-    2. enter the backend dir and follow the readme.md file instructions
-    3. enter the frontend dir and follow the readme.md file instructions
+# 🚀 Project Setup Guide
+
+Follow these steps to set up and run the project:
+
+1. **📂 Set Up the Database**  
+   Navigate to the `Database` directory and follow the instructions in the `README.md` file.
+   ```bash
+   cd Database
+   # Follow the instructions in the README.md
