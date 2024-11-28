@@ -1,12 +1,15 @@
 package frontend;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class RegisteredUser {
 
     private static RegisteredUser currentUser;
-    
-    private boolean LogedIn;
+    private static boolean loginStatus;
+
     private String email;       // Corresponds to email VARCHAR(255) NOT NULL, Primary Key
-    private String username;    // Corresponds to username VARCHAR(255) NOT NULL UNIQUE
     private String password;    // Corresponds to pass_word VARCHAR(255) NOT NULL
     private String lastName;    // Corresponds to last_name VARCHAR(255) NOT NULL
     private String firstName;   // Corresponds to first_name VARCHAR(255) NOT NULL
@@ -14,17 +17,15 @@ public class RegisteredUser {
     // Default constructor (initializes all fields to null)
     public RegisteredUser() {
         this.email = null;
-        this.username = null;
         this.password = null;
         this.lastName = null;
         this.firstName = null;
-        this.LogedIn = false;
+        RegisteredUser.loginStatus = false;
     }
 
     // Parameterized constructor
-    public RegisteredUser(String email, String username, String password, String lastName, String firstName) {
+    public RegisteredUser(String email, String password, String lastName, String firstName) {
         this.email = email != null ? email : null;
-        this.username = username != null ? username : null;
         this.password = password != null ? password : null;
         this.lastName = lastName != null ? lastName : null;
         this.firstName = firstName != null ? firstName : null;
@@ -37,14 +38,6 @@ public class RegisteredUser {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -66,15 +59,17 @@ public class RegisteredUser {
     public String getFirstName() {
         return firstName;
     }
-    private void setlogedin(boolean status){
-        currentUser.LogedIn = status;
-    }
-    public boolean get_is_logedIn() {
-        return currentUser.LogedIn;
-    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    private void setlogedin(boolean status){
+        RegisteredUser.loginStatus = status;
+    }
+
+    public boolean get_is_logedIn() {
+        return RegisteredUser.loginStatus;
     }
 
     public static synchronized RegisteredUser getUser() {
@@ -83,14 +78,66 @@ public class RegisteredUser {
         }
         return currentUser;
     }
-    public static boolean logIn(){
-        currentUser.setlogedin(true);
-        
-        return currentUser.get_is_logedIn();
+
+    public static boolean login() {
+        RegisteredUser user = RegisteredUser.getUser();
+        try {
+            URL url = new URL("http://localhost:8080/users/login");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("PUT");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
+
+            // Manually create JSON string
+            String jsonRequest = "{\"email\":\"" + user.getEmail() + "\", \"password\":\"" + user.getPassword() + "\"}";
+
+            OutputStream os = conn.getOutputStream();
+            os.write(jsonRequest.getBytes());
+            os.flush();
+            os.close();
+
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 200) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+
+                // Manually parse the JSON response
+                String responseString = response.toString();
+                if (responseString.contains("\"message\":\"Successful login\"")) {
+                    String firstName = extractValue(responseString, "firstName");
+                    String lastName = extractValue(responseString, "lastName");
+
+                    user.setFirstName(firstName);
+                    user.setLastName(lastName);
+                    user.setlogedin(true);
+                    return true;
+                }
+            }
+
+            user.setlogedin(false);
+            return false;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            user.setlogedin(false);
+            return false;
+        }
     }
-    public static boolean signUp(){
+
+    // Helper function to extract values from the JSON response
+    private static String extractValue(String json, String key) {
+        int startIndex = json.indexOf("\"" + key + "\":\"") + key.length() + 4;
+        int endIndex = json.indexOf("\"", startIndex);
+        return json.substring(startIndex, endIndex);
+    }
+
+    public static boolean signUp() {
         currentUser.setlogedin(true);
-        
         return currentUser.get_is_logedIn();
     }
 }
