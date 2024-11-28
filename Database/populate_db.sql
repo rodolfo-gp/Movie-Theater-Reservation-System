@@ -40,12 +40,12 @@ VALUES
     (4, 6.80, 1, 'Boss Baby', '2024-12-24 15:30:00');
 
 -- Insert data into Registered_Users
-INSERT INTO Registered_Users (email, username, pass_word, last_name, first_name)
+INSERT INTO Registered_Users (email, pass_word, last_name, first_name)
 VALUES 
-    ('jdoe@example.com', 'jdoe', 'password123', 'Doe', 'John'),
-    ('asmith@example.com', 'asmith', 'mypassword', 'Smith', 'Alice'),
-    ('bwhite@example.com', 'bwhite', 'securepass', 'White', 'Brian'),
-    ('obamna@gov.ca', 'obamna', 'iloveisis', 'Obama', 'Barrack');
+    ('jdoe@example.com',  'password123', 'Doe', 'John'),
+    ('asmith@example.com', 'mypassword', 'Smith', 'Alice'),
+    ('bwhite@example.com', 'securepass', 'White', 'Brian'),
+    ('obamna@gov.ca', 'iloveisis', 'Obama', 'Barrack');
 
 -- Insert data into CreditCards
 INSERT INTO CreditCards (CardNumber, ExpirationDate, CVV, email)
