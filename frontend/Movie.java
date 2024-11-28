@@ -1,6 +1,10 @@
 package frontend;
 
 import org.json.*;
+
+import frontend.Date_time;
+import frontend.Showtime;
+
 import java.util.ArrayList;
 
 public class Movie {
@@ -12,6 +16,14 @@ public class Movie {
 
     public Movie(){
         this.showtimes = new ArrayList<>();
+    }   
+
+    public Movie(String inname, Date_time indate, String indesc, String indirector, ArrayList<Showtime> inshowtimes){
+        this.name = inname;
+        this.release_Date = indate;
+        this.desc = indesc;
+        this.director = indirector;
+        this.showtimes = inshowtimes;
     }   
 
     public String getName(){
