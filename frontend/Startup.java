@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.Component;
 
 
-public class LoginStartUp implements BaseWindow {
+public class Startup implements BaseWindow {
     @Override
     public void createWindow() {
 
@@ -35,7 +35,7 @@ public class LoginStartUp implements BaseWindow {
         JLabel passLabel = new JLabel("Enter your password:");
         JTextField passField = new JTextField();
         
-        JButton submitButton = new JButton("Submit");
+        JButton submitButton = new JButton("Login");
         JLabel resultLabel = new JLabel("");
 
         JButton signupButton = new JButton("Sign Up");
@@ -76,7 +76,7 @@ public class LoginStartUp implements BaseWindow {
     
 
     public static void main(String[] args) {
-        LoginStartUp test = new LoginStartUp();
+        Startup test = new Startup();
         test.createWindow();
     }
 }
