@@ -65,7 +65,6 @@ CREATE TABLE Shows (
 DROP TABLE IF EXISTS Registered_Users;
 CREATE TABLE Registered_Users (
     email VARCHAR(255) NOT NULL, -- PK
-    username VARCHAR(255) NOT NULL UNIQUE,
     pass_word VARCHAR(255) NOT NULL,
     last_name VARCHAR(255) NOT NULL,
     first_name VARCHAR(255) NOT NULL,
