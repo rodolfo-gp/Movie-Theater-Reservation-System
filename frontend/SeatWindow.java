@@ -8,9 +8,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.awt.*;
 
-public class SeatWindow implements BaseWindow {
-    @Override
-    public void createWindow() {
+public class SeatWindow  {
+    
+    public void createSeats() {
 
         //test array
 
