@@ -13,6 +13,7 @@ public class RegisteredUser {
     private String password;    // Corresponds to pass_word VARCHAR(255) NOT NULL
     private String lastName;    // Corresponds to last_name VARCHAR(255) NOT NULL
     private String firstName;   // Corresponds to first_name VARCHAR(255) NOT NULL
+    private boolean renewed;
 
     // Default constructor (initializes all fields to null)
     public RegisteredUser() {
