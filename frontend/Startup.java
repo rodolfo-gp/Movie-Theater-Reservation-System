@@ -1,37 +1,23 @@
 package frontend;
-import javax.lang.model.type.NullType;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import java.awt.*;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import frontend.RegisteredUser;
 
 
 public class Startup implements BaseWindow {
     public static String baseURL = "localhost:8080";
+    private JFrame loginPage;
 
     @Override
     public void createWindow() {
-
         RegisteredUser user = RegisteredUser.getUser();
-
-        JFrame loginpage = new JFrame();
-
-        loginpage.setTitle("Login");
-        loginpage.setSize(1080, 720);
-        // Set default close operation to exit
-        loginpage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Set the layout to null
-        loginpage.setLayout(new GridLayout(4, 2));
+        loginPage = new JFrame("Login");
+        loginPage.setSize(1080, 720);
+        loginPage.setLocationRelativeTo(null); //centers window
+        loginPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginPage.setLayout(new GridLayout(4, 2));
 
         JLabel emailLabel = new JLabel("Enter your email:");
         JTextField emailField = new JTextField();
@@ -50,68 +36,47 @@ public class Startup implements BaseWindow {
             public void actionPerformed(ActionEvent e) {
                 String email = emailField.getText();
                 String password = passField.getText();
-                user.setEmail(email);
-                user.setPassword(password);
-                System.out.println("Attempting Login...");
-                RegisteredUser.login();
-                if (user.get_is_logedIn()) {
-                    System.out.println("login sucessful");
-                    resultLabel.setText("login sucessful");
-                    
-                }else{
-                    System.out.println("login failed");
-                    resultLabel.setText("login failed");
+                if (email.isEmpty() || password.isEmpty()) {
+                    resultLabel.setText("Please fill in all the fields.");
+                } else {
+                    user.setEmail(email);
+                    user.setPassword(password);
+                    System.out.println("Attempting Login...");
+                    boolean isLoggedIn = RegisteredUser.login();  // Ensure login status
+                    String message = RegisteredUser.getMessege();
+                    resultLabel.setText(message != null ? message : "Login failed. Try again.");
                 }
-                
-            }
+            }    
         });
+        
 
         signupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String email = emailField.getText();
-                String password = passField.getText();
-                user.setEmail(email);
-                user.setPassword(password);
-                System.out.println("Attempting signup...");
-                boolean b = RegisteredUser.signUp();
-                if (b) {
-                    System.out.println("signup sucessful");
-                    RegisteredUser.login();
-                    resultLabel.setText("signup sucessful, you are now logged in");
-                    
-                }else{
-                    System.out.println("signup failed");
-                    resultLabel.setText("signup failed");
-                }
-                
+                SignUpPage.showSignUp(loginPage);  // Show sign-up in the same window
             }
         });
 
         guestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                loginpage.setVisible(false);
+                loginPage.setVisible(false);
                 MoviePage m = new MoviePage();
                 m.createWindow();
             }
         });
 
-        
+        loginPage.add(emailLabel);
+        loginPage.add(emailField);
+        loginPage.add(passLabel);
+        loginPage.add(passField);
+        loginPage.add(logInButton);
+        loginPage.add(resultLabel);
+        loginPage.add(signupButton);
+        loginPage.add(guestButton);
 
-        loginpage.add(emailLabel);
-        loginpage.add(emailField);
-        loginpage.add(passLabel);
-        loginpage.add(passField);
-        loginpage.add(logInButton);
-        loginpage.add(resultLabel);
-        loginpage.add(signupButton);
-        loginpage.add(guestButton);
-
-        // Make the frame visible
-        loginpage.setVisible(true);
+        loginPage.setVisible(true);
     }
-    
 
     public static void main(String[] args) {
         Startup test = new Startup();
