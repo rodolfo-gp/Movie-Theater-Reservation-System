@@ -32,16 +32,18 @@ public class SeatController {
         if (optionalSeat.isPresent()) { 
             s = optionalSeat.get();
             
-            if(s.getBooked()==false){ //ensures that seat will no be booked twice
+            if(!s.getBooked()){ //ensures that seat will no be booked twice
                 //book the seat
                 s.setBooked(true);
             }else{
                 //give message that seat is already booked
+               return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Seat not found")
             }
         }    
     }
 
     //find all seats avalable for that show room/theater 
+     @GetMapping("/findSeat")
     public List<Seat> findAllAvailableSeats(int showroom, int theater) { 
         //find if seat id starts with theaternum and showroom
         List<Seat> seatlist= findAllSeats();
