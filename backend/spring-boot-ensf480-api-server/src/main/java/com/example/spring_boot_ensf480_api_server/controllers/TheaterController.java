@@ -26,8 +26,8 @@ public class TheaterController {
     }
      // Get all theaters showing movie
     @GetMapping("/theater/{movieName}")
-    public List<Theater> getShowsByMovieName(@PathVariable String movieName) {
-        return theaterRepository.findMovie(movieName);
+    public List<Theater> getTheatersByMovieName(@PathVariable String movieName) {
+        return theaterRepository.findByMovies_MovieName(movieName);
     }
 
 }
