@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 public class Seat implements Serializable{
     @Id
     private String id;
-    private char seat_row;
+    private int seat_row;
     private int number;
     private boolean booked;
     
@@ -23,7 +23,7 @@ public class Seat implements Serializable{
         this.booked = false;
         id=Integer.toString(theater)+Integer.toString(showroom)+Integer.toString(seat_row)+Integer.toString(number);
     }
-    public char getRow() {
+    public int getRow() {
         return this.seat_row;
     }
 
@@ -38,7 +38,7 @@ public class Seat implements Serializable{
     public void setBooked(boolean booking) {
         this.booked = booking;
     }
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
      public String getid(){
