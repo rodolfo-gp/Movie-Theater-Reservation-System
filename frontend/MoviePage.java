@@ -1,28 +1,28 @@
 package frontend;
-import java.awt.*;
+
 import javax.swing.*;
-import java.util.ArrayList;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JComboBox;
+import java.util.ArrayList;
 
 public class MoviePage implements BaseWindow {
-    
+
+    @Override
     public void createWindow() {
-
-        JFrame moviePage = new JFrame();
-
-        moviePage.setTitle("Movie Browser");
-        moviePage.setSize(1600, 900);
+        // Create the main frame for the movie page
+        JFrame moviePage = new JFrame("Movie Browser");
+        moviePage.setSize(1080, 720);
+        moviePage.setLocationRelativeTo(null);  // Center the window
         moviePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         moviePage.setLayout(new BorderLayout());
 
+        // Create a panel to hold movie buttons
         JPanel moviePanel = new JPanel();
         moviePanel.setLayout(new BoxLayout(moviePanel, BoxLayout.Y_AXIS));
 
-        //test with mock array list
-
-        ArrayList<String> movies = new ArrayList<String>();
+        // Mock list of movies (this will later be fetched from a server)
+        ArrayList<String> movies = new ArrayList<>();
         movies.add("Deadpool");
         movies.add("Boss Baby");
         movies.add("Shrek");
@@ -30,72 +30,54 @@ public class MoviePage implements BaseWindow {
         movies.add("The Lego Movie");
         movies.add("Finding Fahmi");
 
-
-        //add theatres----
-        ArrayList<String> theatres = new ArrayList<String>();
-        theatres.add("Chungus");
-        theatres.add("That feeling when knee surgery tommorrow");
-        theatres.add("Bingus");
-        
-        JPanel theatrePanel = new JPanel();
-        theatrePanel.setLayout(new BorderLayout());
-
-        String[] theatresArray = new String[theatres.size()];
-        theatresArray = theatres.toArray(theatresArray);
-
-        JComboBox<String> theatreSelect = new JComboBox<String>(theatresArray);
-        theatrePanel.add(theatreSelect, BorderLayout.LINE_END);
-        moviePage.add(theatrePanel, BorderLayout.LINE_END);
-        //  end------
-
+        // Add each movie as a button
         for (String movie : movies) {
+            JButton movieButton = new JButton(movie);
+            movieButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center the button
+            movieButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));  // Stretch to full width
 
-            JPanel row = new JPanel(new BorderLayout());
-            row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-            JLabel name = new JLabel(movie);
-            name.setPreferredSize(new Dimension(100, 30));
-            row.add(name, BorderLayout.WEST);
-
-            JPanel buttonPanel = new JPanel();
-            buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
-            JButton detailButton = new JButton("deez nuts");
-            detailButton.addActionListener(new ActionListener() {
+            // Action Listener for each movie button (left blank for now)
+            movieButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println("Button pressed");
+                    // Leave this blank for now
+                    System.out.println(movie + " button clicked");
                 }
             });
 
-            JButton buyTicketButton = new JButton("Buy Ticket");
-            buyTicketButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    ShowtimeDisplay s = new ShowtimeDisplay();
-                    s.show_Showtimes(movie);
-                }
-            });
+            // Add some padding around each button
+            movieButton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-            buttonPanel.add(detailButton);
-            buttonPanel.add(buyTicketButton);
-
-            row.add(buttonPanel, BorderLayout.CENTER);
-
-            row.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-
-            moviePanel.add(row);
-
+            // Add the button to the panel
+            moviePanel.add(movieButton);
         }
 
+        // Add the movie panel to a scrollable pane
         JScrollPane scrollPane = new JScrollPane(moviePanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         // Add the scroll pane to the frame
-        moviePage.add(scrollPane, BorderLayout.LINE_START);
+        moviePage.add(scrollPane, BorderLayout.CENTER);
+
+        // Create a "Return to Home" button at the bottom
+        JButton returnHomeButton = new JButton("Return to Home");
+        returnHomeButton.setPreferredSize(new Dimension(moviePage.getWidth(), 50));
+        returnHomeButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Action listener for "Return to Home" button
+        returnHomeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                moviePage.dispose();  // Close the movie page window
+                Startup startup = new Startup();
+                startup.createWindow();  // Return to home screen
+            }
+        });
+
+        // Add the "Return to Home" button at the bottom of the frame
+        moviePage.add(returnHomeButton, BorderLayout.SOUTH);
 
         // Make the frame visible
         moviePage.setVisible(true);
-    }     
+    }
 }
-
-
