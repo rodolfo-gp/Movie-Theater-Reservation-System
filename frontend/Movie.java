@@ -5,6 +5,10 @@ import org.json.*;
 import frontend.Date_time;
 import frontend.Showtime;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import java.util.ArrayList;
 
 public class Movie {
@@ -60,6 +64,39 @@ public class Movie {
     
     public void setShowtimes(ArrayList<Showtime> inshowtimes){
         this.showtimes = inshowtimes;
+    }
+
+    public static ArrayList<Movie> getAllMovies() {
+
+        try {
+
+            URL url = new URL("http://localhost:8080/theaters");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET"); 
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setDoOutput(true);
+
+            int responseCode = connection.getResponseCode();
+            System.out.println("Response Code: " + responseCode);
+
+            if (responseCode == 200) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputline;
+
+                while ((inputLine = reader.readLine()) != null) {
+                    response.appeand(inputline);
+                }
+
+                reader.close();
+                all_movies = response.toString();
+
+                connection.disconnect();
+
+
+            }
+
+        }
     }
 }
 
