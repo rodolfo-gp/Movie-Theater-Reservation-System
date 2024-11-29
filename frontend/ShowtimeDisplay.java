@@ -10,7 +10,7 @@ public class ShowtimeDisplay {
     public void show_Showtimes(Movie le_movie) {
         JFrame showtimePage = new JFrame("Showtimes");
         showtimePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        showtimePage.setSize(300, 150);
+        showtimePage.setSize(300, 300);
         showtimePage.setLayout(new BorderLayout());
 
 
