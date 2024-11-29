@@ -40,6 +40,7 @@ public class RegisteredUser {
 
     public void setEmail(String email) {
         this.email = email;
+        setlogedin(false);
     }
 
     public String getPassword() {
@@ -48,6 +49,7 @@ public class RegisteredUser {
 
     public void setPassword(String password) {
         this.password = password;
+        setlogedin(false);
     }
 
     public String getLastName() {
