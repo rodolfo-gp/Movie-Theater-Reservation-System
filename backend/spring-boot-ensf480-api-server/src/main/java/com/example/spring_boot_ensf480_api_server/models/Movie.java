@@ -2,9 +2,11 @@ package com.example.spring_boot_ensf480_api_server.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Table(name = "Movies")
@@ -20,6 +22,8 @@ public class Movie {
     @Column(name = "release_date")
     private LocalDate releaseDate;
 
+    @ManyToMany 
+    private Set<Theater> theaters;
     // Default constructor
     public Movie() {
     }
@@ -64,5 +68,13 @@ public class Movie {
                 ", director='" + director + '\'' +
                 ", releaseDate=" + releaseDate +
                 '}';
+    }
+
+    public Set<Theater> getTheaters() { 
+        return theaters; 
+    } 
+
+    public void setTheaters(Set<Theater> theaters) {      
+        this.theaters = theaters;
     }
 }

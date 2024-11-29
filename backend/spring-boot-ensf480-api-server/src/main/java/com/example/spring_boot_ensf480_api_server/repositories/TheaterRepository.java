@@ -8,9 +8,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TheaterRepository extends CrudRepository<Theater,Integer> {
+public interface TheaterRepository extends CrudRepository<Theater, Integer> {
 
-    List<Theater> findMovie(String movie);
+    List<Theater> findByMovies_MovieName(String movieName);
     
 }
 
