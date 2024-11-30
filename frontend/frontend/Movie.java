@@ -1,7 +1,5 @@
 package frontend;
 
-import org.json.*;
-
 import frontend.Date_time;
 import frontend.Showtime;
 
@@ -13,7 +11,7 @@ import java.util.ArrayList;
 
 public class Movie {
     private String name;
-    private Date_time release_Date;
+    public Date_time release_Date;
     private String desc;  
     private String director;
     private ArrayList<Showtime> showtimes;
@@ -65,7 +63,7 @@ public class Movie {
     public void setShowtimes(ArrayList<Showtime> inshowtimes){
         this.showtimes = inshowtimes;
     }
-
+    /* 
     public static ArrayList<Movie> getAllMovies() {
 
         try {
@@ -93,10 +91,10 @@ public class Movie {
 
                 connection.disconnect();
 
+            
+            }*/
 
-            }
-
-        }
-    }
+        
+    
 }
 

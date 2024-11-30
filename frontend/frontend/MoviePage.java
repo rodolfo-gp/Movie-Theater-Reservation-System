@@ -71,8 +71,9 @@ public class MoviePage implements BaseWindow {
             buyTicketButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    /* 
                     ShowtimeDisplay s = new ShowtimeDisplay();
-                    s.show_Showtimes(movie);
+                    s.show_Showtimes(movie);*/
                 }
             });
 
