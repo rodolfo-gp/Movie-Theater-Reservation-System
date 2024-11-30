@@ -25,11 +25,11 @@ VALUES
 -- Insert data into Showrooms
 INSERT INTO Showrooms (showroom_id, theater_id, num_rows, num_columns)
 VALUES 
-    (1, 1, 10, 15),
-    (2, 1, 8, 12),
-    (1, 2, 12, 20),
-    (1, 3, 15, 25),
-    (1, 4, 30, 25);
+    (1, 1, 5, 15),
+    (2, 1, 5, 15),
+    (1, 2, 5, 15),
+    (1, 3, 5, 15),
+    (1, 4, 5, 15);
 
 -- Insert data into Shows (Including JSON seat_map with simple default)
 INSERT INTO Shows (theater_id, ticket_price, showroom_id, movie_name, date_and_time)
