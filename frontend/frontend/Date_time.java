@@ -54,8 +54,8 @@ public class Date_time {
 
     public String displayTime() {
         String time = null;
-        if (year == 0) {
-            time = month + "/" + day + " " + hour + ":" + minute;
+        if (minute != null) {
+            time = year + "/" + month + "/" + day + "  " + hour + ":" + minute;
             return time;
         }
         else {

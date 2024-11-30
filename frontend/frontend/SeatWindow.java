@@ -1,67 +1,78 @@
 package frontend;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.awt.*;
 
+import java.net.URL;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SeatWindow  {
     
     public void createSeats() {
 
-        //test array
 
-        int[][] array = {
-            {0, 1, 0, 1, 0},
-            {1, 0, 1, 0, 1},
-            {0, 0, 1, 1, 1},
-            {1, 1, 0, 0, 0}
-        };
+        //GET SEAT MAP
+        //this is mock data
+        ArrayList<ArrayList<Seat>> seatMap = new ArrayList<>();
+        char rowChar = 'A';
 
-        JFrame seatMapFrame = new JFrame();
-        seatMapFrame.setSize(600, 500);
-        //get seats from sql
-        seatMapFrame.setLayout(new GridLayout(array.length, array[0].length));
-
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-
-                // seat is taken
-                if (array[i][j] == 1) {
-                    JLabel seatLabel = new JLabel("Taken");
-                    seatLabel.setBackground(Color.RED);
-                    seatLabel.setOpaque(true);
-                    seatLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                    seatMapFrame.add(seatLabel);
-                }
-                //seat is not taken
-                else {
-                    JButton button = new JButton("$");
-                    button.setBackground(Color.GREEN);
-                    button.setOpaque(true);
-                    button.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-                    int row = i;
-                    int col = j;
-
-                    button.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JOptionPane.showMessageDialog(seatMapFrame,
-                            "Button pressed at (" + row + ", " + col + ")");
-                        }
-                    });
-
-                    seatMapFrame.add(button);
-
-
-                }
+        for (int i = 0; i < 4; i++) {
+            ArrayList<Seat> row = new ArrayList<>();
+            for (int j = 1; j <= 5; j++) {
+                row.add(new Seat(rowChar, j));
             }
-
+            seatMap.add(row);
+            rowChar++; 
         }
-        seatMapFrame.setVisible(true);
+
+        JFrame seatPage =  new JFrame();
+
+        seatPage.setTitle("Seat Booking System");
+        seatPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        seatPage.setSize(800, 600);
+        seatPage.setLayout(new GridLayout(4, 5, 5, 5)); // Grid layout for the seats
+
+        // Add buttons for each seat
+        for (ArrayList<Seat> row : seatMap) {
+            for (Seat seat : row) {
+                JButton seatButton = new JButton(seat.getRow() + "" + seat.getNumber());
+                seatButton.setOpaque(true);
+                seatButton.setBorderPainted(false);
+                updateButtonColor(seatButton, seat.getBooked());
+
+                // Add action listener to toggle booking status
+                seatButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        seat.setBooked(!seat.getBooked()); // Toggle booking status
+                        updateButtonColor(seatButton, seat.getBooked());
+                        seatPage.setVisible(false);
+                        PurchaseTicket t = new PurchaseTicket();
+                        t.createPurchasePage();
+                    }
+                });
+
+                seatPage.add(seatButton);
+            }
+        }
+
+        seatPage.setVisible(true); // Display the JFrame
     }
+
+    private void updateButtonColor(JButton button, boolean booked) {
+        if (booked) {
+            button.setBackground(Color.RED); // Booked seats are red
+            button.setForeground(Color.WHITE);
+        } else {
+            button.setBackground(Color.GREEN); // Available seats are green
+            button.setForeground(Color.BLACK);
+        }
+    }
+
 }
+
