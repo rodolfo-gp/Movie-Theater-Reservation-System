@@ -41,12 +41,28 @@ public class PurchaseTicket {
         ccv_code.setAlignmentY(400);
         ccv_code.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
         purchasePanel.add(ccv_code);
-        
+
+        //create ticket
+        Ticket tck = new Ticket();
+        tck.setPrice(9.99f);
+    
         
         submit.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
         submit.setAlignmentX(Component.CENTER_ALIGNMENT);  
         submit.setAlignmentY(900);
         submit.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                purchasePage.setVisible(false);
+                //mock data
+                String email = "grunkus.floob@hotmail.gov";
+                String code = "1234 goob 5678 soup";
+                TicketDetail td = new TicketDetail();
+                td.createReceipt(tck, email, code);
+            }
+        });
+
         purchasePanel.add(submit);
 
         JScrollPane scrollPane = new JScrollPane(purchasePanel);
