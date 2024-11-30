@@ -30,7 +30,7 @@ public class SeatController {
     }
     
     //customer already knows what seat they want (they have slected from a map) so we know id 
-    public void bookSeat(String id){//get theater //showroom
+    public void bookSeat(String id){
         Seat s;
         Optional<Seat> optionalSeat = seatRepository.findById(id); 
         if (optionalSeat.isPresent()) { 
