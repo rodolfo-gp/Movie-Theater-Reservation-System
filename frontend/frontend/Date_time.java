@@ -6,8 +6,8 @@ public class Date_time {
     public Integer hour; // Set to Integer to allow null values
     public Integer minute;
 
-    public Date_time(int month, int day, int hour, int minute) {
-        this.year = 0;
+    public Date_time(int year, int month, int day, int hour, int minute) {
+        this.year = year;
         this.month = month;
         this.day = day;
         this.hour = hour;
@@ -15,7 +15,7 @@ public class Date_time {
     }
 
     //second ctor for when you don't need minute and hour (movie release dates)
-    public Date_time(int month, int day) {
+    public Date_time(int year, int month, int day) {
         this.year = 0;
         this.month = month;
         this.day = day;

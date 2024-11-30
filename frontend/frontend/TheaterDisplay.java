@@ -7,10 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class TheaterDisplay implements BaseWindow{
+public class TheaterDisplay {
  
-    @Override
-    public void createWindow() {//Movie Selected_Movie
+    public void createWindow(ArrayList<Theater> tlist) {//Movie Selected_Movie
         // Create the main frame for the movie page
         JFrame theaterPage = new JFrame("Theater Browser");
         theaterPage.setSize(1080, 720);
@@ -20,15 +19,9 @@ public class TheaterDisplay implements BaseWindow{
 
         JPanel theaterPanel = new JPanel();
         theaterPanel.setLayout(new BoxLayout(theaterPanel, BoxLayout.Y_AXIS));
-
-        ArrayList<String> theaters = new ArrayList<>();
-        theaters.add("Westtown");
-        theaters.add("Easttown");
-        theaters.add("Downtown");
-        theaters.add("Uptown");
         
-        for (String theater : theaters){
-            JButton theaterButton = new JButton(theater);
+        for (Theater theater : tlist){
+            JButton theaterButton = new JButton(theater.getName());
             theaterButton.setAlignmentX(Component.CENTER_ALIGNMENT);  // Center the button
             theaterButton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));  // Stretch to full width
 
@@ -37,8 +30,10 @@ public class TheaterDisplay implements BaseWindow{
             theaterButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    // Leave this blank for now
-                    System.out.println(theater + " button clicked");
+                    theaterPage.setVisible(false);
+                    MoviePage m = new  MoviePage();
+                    m.createWindow(theater);
+                    
                 }
             });
 
