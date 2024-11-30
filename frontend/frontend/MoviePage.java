@@ -77,8 +77,11 @@ public class MoviePage implements BaseWindow {
                 }
             });
 
+            
+
             buttonPanel.add(detailButton);
             buttonPanel.add(buyTicketButton);
+            
 
             row.add(buttonPanel, BorderLayout.CENTER);
 
@@ -87,7 +90,16 @@ public class MoviePage implements BaseWindow {
             moviePanel.add(row);
 
         }
-
+        JButton theatreButton = new JButton("Select Theater");
+        theatreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TheaterDisplay t = new TheaterDisplay();
+                t.createWindow();
+                }
+            });
+        
+        moviePage.add(theatreButton);
         JScrollPane scrollPane = new JScrollPane(moviePanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 

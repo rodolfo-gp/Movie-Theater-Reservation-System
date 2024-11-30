@@ -1,20 +1,19 @@
 package frontend;
 
-import org.json.*;
 import java.util.ArrayList;
 
 public class Theater {
     private String name;
     private String location;
-    private ArrayList<Movies> movies;
-    private ArrayList<Showroom> rooms;
+    private ArrayList<Movie> movies;
+    //private ArrayList<Showroom> rooms;
 
     public Theater(){
-        this.rooms = new ArrayList<>();
+        //this.rooms = new ArrayList<>();
         this.movies = new ArrayList<>();
     }   
 
-    public ArrayList<Movies> getMovies(){
+    public ArrayList<Movie> getMovies(){
         return this.movies;
     }
 
@@ -25,11 +24,11 @@ public class Theater {
     public String getName(){
         return this.name;
     }
-
+    /* 
     public ArrayList<Showroom> getShowrooms(){
         return this.rooms;
     }
-
+    */
     public void setName(String inname){
         this.name = inname;
     }
@@ -38,15 +37,15 @@ public class Theater {
         this.location = inlocation;
     }
 
-    public void setMovies(ArrayList<Movies> inMovies){
+    public void setMovies(ArrayList<Movie> inMovies){
         this.movies = inMovies;
     }
-
+    /* 
     public void setRooms(ArrayList<Showroom> inrooms){
         this.movies = inrooms;
     }    
-
-    public void addMovies(Movies newMovie){
+*/
+    public void addMovies(Movie newMovie){
         this.movies.add(newMovie);
     }
 
