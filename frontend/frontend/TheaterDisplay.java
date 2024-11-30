@@ -21,7 +21,7 @@ public class TheaterDisplay implements BaseWindow{
         JPanel theaterPanel = new JPanel();
         theaterPanel.setLayout(new BoxLayout(theaterPanel, BoxLayout.Y_AXIS));
 
-        ArrayList<Theater> theaters = new ArrayList<>();
+        ArrayList<String> theaters = new ArrayList<>();
         theaters.add("Westtown");
         theaters.add("Easttown");
         theaters.add("Downtown");
