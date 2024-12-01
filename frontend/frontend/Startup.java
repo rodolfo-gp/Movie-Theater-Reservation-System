@@ -68,7 +68,7 @@ public class Startup implements BaseWindow {
             public void actionPerformed(ActionEvent e) {
                 loginPage.setVisible(false);
                 MoviePage m = new MoviePage();
-                m.createWindow();
+                m.createWindow(null);
             }
         });
 
