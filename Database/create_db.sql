@@ -95,3 +95,14 @@ CREATE TABLE CreditCards (
     email VARCHAR(255) NOT NULL,
     CONSTRAINT fk_Email FOREIGN KEY (email) REFERENCES Registered_Users(email) ON DELETE CASCADE
 );
+
+DROP TABLE IF EXISTS Seats;
+CREATE TABLE Seats (
+    id INT PRIMARY KEY,                   
+    seat_row INT NOT NULL,                
+    seat_column INT NOT NULL,            
+    booked BOOLEAN DEFAULT FALSE,         
+    showroom_id SMALLINT NOT NULL,        
+    dateAndTime DATETIME NOT NULL,      
+    FOREIGN KEY (showroom_id) REFERENCES Showrooms(showroom_id)
+);
