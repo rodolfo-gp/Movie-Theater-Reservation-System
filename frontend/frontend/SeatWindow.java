@@ -36,11 +36,13 @@ public class SeatWindow  {
         seatPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         seatPage.setSize(800, 600);
         seatPage.setLayout(new GridLayout(4, 5, 5, 5)); // Grid layout for the seats
+        seatPage.setLocationRelativeTo(null);
 
         // Add buttons for each seat
         for (ArrayList<Seat> row : seatMap) {
             for (Seat seat : row) {
                 JButton seatButton = new JButton(seat.getRow() + "" + seat.getNumber());
+                seatButton.setFont(new Font("Arial", Font.BOLD, 24));
                 seatButton.setOpaque(true);
                 seatButton.setBorderPainted(false);
                 updateButtonColor(seatButton, seat.getBooked());

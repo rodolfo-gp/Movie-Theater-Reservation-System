@@ -31,6 +31,12 @@ public class Startup implements BaseWindow {
         JButton signupButton = new JButton("Sign Up");
         JButton guestButton = new JButton("Browse movies and more");
 
+        emailLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        passLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        logInButton.setFont(new Font("Arial", Font.BOLD, 32));
+        signupButton.setFont(new Font("Arial", Font.BOLD, 32));
+        guestButton.setFont(new Font("Arial", Font.BOLD, 32));
+
         logInButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

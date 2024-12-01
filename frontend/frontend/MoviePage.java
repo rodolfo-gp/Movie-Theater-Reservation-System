@@ -26,16 +26,17 @@ public class MoviePage {
         // --- Display Movies ---
         for (Movie movie : movieList) {
             JPanel row = new JPanel(new BorderLayout());
-            row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-            row.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+            row.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
 
             JLabel name = new JLabel(movie.getName());
-            name.setFont(new Font("Arial", Font.BOLD, 16));
+            name.setFont(new Font("Arial", Font.BOLD, 32));
             row.add(name, BorderLayout.WEST);
 
             JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
             JButton detailButton = new JButton("Movie Details");
+            detailButton.setFont(new Font("Arial", Font.BOLD, 24));
             detailButton.addActionListener(e -> {
                 MovieDetails details = new MovieDetails();
                 details.createWindow(movie);
@@ -43,6 +44,7 @@ public class MoviePage {
             });
 
             JButton buyTicketButton = new JButton("Buy Ticket");
+            buyTicketButton.setFont(new Font("Arial", Font.BOLD, 24));
             buyTicketButton.addActionListener(e -> {
                 ShowtimeDisplay s = new ShowtimeDisplay();
                 s.show_Showtimes(movie);
