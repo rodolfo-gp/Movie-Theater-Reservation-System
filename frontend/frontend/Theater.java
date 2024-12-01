@@ -8,8 +8,9 @@ public class Theater {
     private ArrayList<Movie> movies;
     //private ArrayList<Showroom> rooms;
 
-    public Theater(){
-        //this.rooms = new ArrayList<>();
+    public Theater(String name, String location){
+        this.name = name;
+        this.location = location;
         this.movies = new ArrayList<>();
     }   
 
