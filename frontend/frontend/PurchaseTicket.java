@@ -19,35 +19,35 @@ public class PurchaseTicket {
         purchasePanel.setLayout(new BoxLayout(purchasePanel, BoxLayout.Y_AXIS)); 
 
         //if user not logged in 
-        JTextField email = new JTextField();
-        JTextField card_digits = new JTextField();
-        JTextField ccv_code = new JTextField();
+        JTextField email_Field = new JTextField();
+        JTextField card_digit_Field = new JTextField();
+        JTextField ccv_code_Field = new JTextField();
         JButton submit = new JButton("submit");
 
         JLabel text = new JLabel("Email");
         text.setAlignmentX(Component.LEFT_ALIGNMENT);
-        email.setAlignmentX(Component.CENTER_ALIGNMENT); 
-        email.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
-        email.setAlignmentY(0);
-        email.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
+        email_Field.setAlignmentX(Component.CENTER_ALIGNMENT); 
+        email_Field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
+        email_Field.setAlignmentY(0);
+        email_Field.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
         purchasePanel.add(text);
-        purchasePanel.add(email);
+        purchasePanel.add(email_Field);
         
         text = new JLabel("Card Number");
-        card_digits.setAlignmentX(Component.CENTER_ALIGNMENT);
-        card_digits.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
-        card_digits.setAlignmentY(200);
-        card_digits.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
+        card_digit_Field.setAlignmentX(Component.CENTER_ALIGNMENT);
+        card_digit_Field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
+        card_digit_Field.setAlignmentY(200);
+        card_digit_Field.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
         purchasePanel.add(text);
-        purchasePanel.add(card_digits);
+        purchasePanel.add(card_digit_Field);
 
         text = new JLabel("CCV");
-        ccv_code.setAlignmentX(Component.CENTER_ALIGNMENT); 
-        ccv_code.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
-        ccv_code.setAlignmentY(400);
-        ccv_code.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
+        ccv_code_Field.setAlignmentX(Component.CENTER_ALIGNMENT); 
+        ccv_code_Field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
+        ccv_code_Field.setAlignmentY(400);
+        ccv_code_Field.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
         purchasePanel.add(text);
-        purchasePanel.add(ccv_code);
+        purchasePanel.add(ccv_code_Field);
 
         //create ticket
         Ticket tck = new Ticket();
@@ -62,11 +62,10 @@ public class PurchaseTicket {
             @Override
             public void actionPerformed(ActionEvent e) {
                 purchasePage.setVisible(false);
-                //mock data2
-                String email = "grunkus.floob@hotmail.gov";
-                String code = "1234 goob 5678 soup";
+                String email = email_Field.getText();
+                String code = card_digit_Field.getText();
                 TicketDetail td = new TicketDetail();
-                td.createReceipt(tck, email, code);
+                td.createReceipt(tck, email_Field, code);
             }
         });
 
