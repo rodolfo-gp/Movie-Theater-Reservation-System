@@ -24,22 +24,29 @@ public class PurchaseTicket {
         JTextField ccv_code = new JTextField();
         JButton submit = new JButton("submit");
 
+        JLabel text = new JLabel("Email");
+        text.setAlignmentX(Component.LEFT_ALIGNMENT);
         email.setAlignmentX(Component.CENTER_ALIGNMENT); 
         email.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
         email.setAlignmentY(0);
         email.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
+        purchasePanel.add(text);
         purchasePanel.add(email);
         
+        text = new JLabel("Card Number");
         card_digits.setAlignmentX(Component.CENTER_ALIGNMENT);
         card_digits.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
         card_digits.setAlignmentY(200);
         card_digits.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
+        purchasePanel.add(text);
         purchasePanel.add(card_digits);
 
+        text = new JLabel("CCV");
         ccv_code.setAlignmentX(Component.CENTER_ALIGNMENT); 
         ccv_code.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
         ccv_code.setAlignmentY(400);
         ccv_code.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
+        purchasePanel.add(text);
         purchasePanel.add(ccv_code);
 
         //create ticket
@@ -55,7 +62,7 @@ public class PurchaseTicket {
             @Override
             public void actionPerformed(ActionEvent e) {
                 purchasePage.setVisible(false);
-                //mock data
+                //mock data2
                 String email = "grunkus.floob@hotmail.gov";
                 String code = "1234 goob 5678 soup";
                 TicketDetail td = new TicketDetail();
