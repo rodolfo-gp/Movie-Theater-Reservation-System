@@ -65,7 +65,7 @@ public class PurchaseTicket {
                 String email = email_Field.getText();
                 String code = card_digit_Field.getText();
                 TicketDetail td = new TicketDetail();
-                td.createReceipt(tck, email_Field, code);
+                td.createReceipt(tck, email, code);
             }
         });
 
