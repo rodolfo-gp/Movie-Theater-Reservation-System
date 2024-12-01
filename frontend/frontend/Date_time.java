@@ -1,11 +1,13 @@
 package frontend;
+
 public class Date_time {
     public int year;
     public int month;
     public int day;
-    public Integer hour; // Set to Integer to allow null values
+    public Integer hour;  // Set to Integer to allow null values
     public Integer minute;
 
+    // Constructor with full date and time
     public Date_time(int year, int month, int day, int hour, int minute) {
         this.year = year;
         this.month = month;
@@ -14,23 +16,23 @@ public class Date_time {
         this.minute = minute;
     }
 
-    //second ctor for when you don't need minute and hour (movie release dates)
+    // Constructor for release dates (without hour and minute)
     public Date_time(int year, int month, int day) {
-        this.year = 0;
+        this.year = year;
         this.month = month;
         this.day = day;
         this.hour = null;    
         this.minute = null;
     }
 
-    //for when you need a release date (just year)
+    // Constructor for just a year (default month and day to 1)
     public Date_time(int year) {
         this.year = year;
-        this.month = 0;
-        this.day = 0;
+        this.month = 1;
+        this.day = 1;
         this.hour = null;    
         this.minute = null;
-    } 
+    }
 
     public int getYear() {
         return year;
@@ -52,15 +54,16 @@ public class Date_time {
         return minute;
     }
 
-    public String displayTime() {
-        String time = null;
-        if (minute != null) {
-            time = year + "/" + month + "/" + day + "  " + hour + ":" + minute;
-            return time;
+    // Override toString() method to display date and time
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(String.format("%04d-%02d-%02d", year, month, day)); // YYYY-MM-DD
+
+        // Only append time if hour and minute are not null
+        if (hour != null && minute != null) {
+            result.append(String.format(" %02d:%02d", hour, minute)); // HH:MM
         }
-        else {
-            time = String.valueOf(year);
-            return time;
-        }
+        return result.toString();
     }
 }

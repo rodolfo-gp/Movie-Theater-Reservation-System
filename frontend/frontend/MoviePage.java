@@ -19,24 +19,9 @@ public class MoviePage {
         JPanel moviePanel = new JPanel();
         moviePanel.setLayout(new BoxLayout(moviePanel, BoxLayout.Y_AXIS));
 
-        // --- Mock Movie Data Setup ---
-        Date_time movieReleaseDate = new Date_time(2023, 11, 20);
-        Date_time showtime1 = new Date_time(2023, 11, 30, 19, 30);
-        Date_time showtime2 = new Date_time(2023, 12, 1, 21, 0);
 
-        Showtime st1 = new Showtime(showtime1, 1);
-        Showtime st2 = new Showtime(showtime2, 2);
-
-        ArrayList<Showtime> showtimesList = new ArrayList<>();
-        showtimesList.add(st1);
-        showtimesList.add(st2);
-
-        Movie movie1 = new Movie("The Grand Adventure", movieReleaseDate, "An epic journey.", "John Doe", showtimesList);
-        Movie movie2 = new Movie("Comedy Nights", new Date_time(2023), "A hilarious comedy.", "Jane Smith", new ArrayList<>());
-
-        ArrayList<Movie> movieList = new ArrayList<>();
-        movieList.add(movie1);
-        movieList.add(movie2);
+        ArrayList<Movie> movieList = Movie.getMovies();
+        
 
         // --- Display Movies ---
         for (Movie movie : movieList) {
