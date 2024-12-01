@@ -19,6 +19,7 @@ public class ShowtimeDisplay {
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                showtimePage.dispose();
                 SeatWindow s = new SeatWindow();
                 s.createSeats();
             }

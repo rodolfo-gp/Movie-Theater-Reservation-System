@@ -18,11 +18,11 @@ public class PurchaseTicket {
         JPanel purchasePanel = new JPanel();
         purchasePanel.setLayout(new BoxLayout(purchasePanel, BoxLayout.Y_AXIS)); 
 
-        //if user not logged in 
         JTextField email_Field = new JTextField();
         JTextField card_digit_Field = new JTextField();
         JTextField ccv_code_Field = new JTextField();
         JButton submit = new JButton("submit");
+        JButton back = new JButton("Back");
 
         JLabel text = new JLabel("Email");
         text.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -61,7 +61,7 @@ public class PurchaseTicket {
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                purchasePage.setVisible(false);
+                purchasePage.dispose();
                 String email = email_Field.getText();
                 String code = card_digit_Field.getText();
                 TicketDetail td = new TicketDetail();
@@ -69,7 +69,20 @@ public class PurchaseTicket {
             }
         });
 
+        back.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
+        back.setAlignmentX(Component.CENTER_ALIGNMENT);
+        back.setAlignmentY(1000);
+        back.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                purchasePage.dispose();
+            }
+        });
+
+        
         purchasePanel.add(submit);
+        purchasePanel.add(back);
 
         JScrollPane scrollPane = new JScrollPane(purchasePanel);
         purchasePage.add(scrollPane, BorderLayout.CENTER);

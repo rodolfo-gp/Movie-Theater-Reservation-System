@@ -13,7 +13,7 @@ public class MovieDetails {
         details.setSize(400, 300);
         details.setTitle(le_movie.getName());
         details.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        details.setLayout(new GridLayout(3, 2));
+        details.setLayout(new GridLayout(4, 2));
 
         JLabel rel = new JLabel("Relesase Date: ");
         JLabel release = new JLabel(le_movie.release_Date.displayTime());
@@ -24,12 +24,23 @@ public class MovieDetails {
         JLabel des = new JLabel("Description: ");
         JLabel description = new JLabel(le_movie.getDesc());
 
+        JButton back = new JButton("Back");
+
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                details.dispose();
+            }
+        });
+
+
         details.add(rel);
         details.add(release);
         details.add(dir);
         details.add(director);
         details.add(des);
         details.add(description);
+        details.add(back);
 
         details.setVisible(true);
         
