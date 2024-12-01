@@ -98,11 +98,14 @@ CREATE TABLE CreditCards (
 
 DROP TABLE IF EXISTS Seats;
 CREATE TABLE Seats (
-    id INT PRIMARY KEY,                   
-    seat_row INT NOT NULL,                
-    seat_column INT NOT NULL,            
-    booked BOOLEAN DEFAULT FALSE,         
-    showroom_id SMALLINT NOT NULL,        
-    dateAndTime DATETIME NOT NULL,      
-    FOREIGN KEY (showroom_id) REFERENCES Showrooms(showroom_id)
+    id INT NOT NULL,                        
+    seat_row INT NOT NULL,                  
+    seat_column INT NOT NULL,               
+    booked BOOLEAN DEFAULT FALSE,           
+    showroom_id SMALLINT NOT NULL,          
+    theater_id INT NOT NULL,                
+    dateAndTime DATETIME NOT NULL,          
+    PRIMARY KEY (id),                       
+    CONSTRAINT fk_showroom FOREIGN KEY (showroom_id, theater_id) 
+        REFERENCES Showrooms(showroom_id, theater_id) 
 );

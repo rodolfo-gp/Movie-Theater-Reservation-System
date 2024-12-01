@@ -14,7 +14,7 @@ import com.example.spring_boot_ensf480_api_server.models.Seat;
 import com.example.spring_boot_ensf480_api_server.repositories.SeatRepository;
 
 @RestController
-@RequestMapping("/api/v1/Seat")
+@RequestMapping("/Seat")
 
 public class SeatController {
 
@@ -36,7 +36,7 @@ public class SeatController {
         if (optionalSeat.isPresent()) { 
             s = optionalSeat.get();
             
-            if(!s.getBooked()){ //ensures that seat will no be booked twice
+            if(!s.isBooked()){ //ensures that seat will no be booked twice
                 //book the seat
                 s.setBooked(true);
             }else{
@@ -46,21 +46,20 @@ public class SeatController {
         }    
     }
 
-    //find all seats avalable for that show room/theater 
-     @GetMapping("/findSeat")
-    public List<Seat> findAllAvailableSeats(int showroom, int theater) { 
-        //find if seat id starts with theaternum and showroom
-        List<Seat> seatlist= findAllSeats();
-        List<Seat> availableSeats = new ArrayList<>();
+    //find all seats avalable for that show room
+    @GetMapping("/findSeat")
+    public List<Seat> findAllAvailableSeats(int showroom) {
+   
+    List<Seat> seatlist = findAllSeats(); // Assuming findAllSeats() retrieves all the seats
+    List<Seat> availableSeats = new ArrayList<>();
 
-            
-        for(int i=0;i<seatlist.size();i++){
-            ////seat id = theater, showroom, row number, seat number
-            //find seats that id's start with correct theater and showroom 
-            if(seatlist.get(i).getid().startsWith(Integer.toString(theater)+Integer.toString(showroom))==true){
-                availableSeats.add(seatlist.get(i));
-            };
+    // Loop through each seat and match the showrooms 
+    for (Seat seat : seatlist) {
+        if (!seat.isBooked() && seat.getShowroomId() == showroom) {
+            availableSeats.add(seat);
         }
-        return availableSeats;
     }
+    return availableSeats;
+}
+
 }
