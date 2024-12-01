@@ -98,6 +98,8 @@ public class MoviePage {
             detailButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    MovieDetails details = new MovieDetails();
+                    details.createWindow(movie);
                     System.out.println("Button pressed");
                 }
             });
