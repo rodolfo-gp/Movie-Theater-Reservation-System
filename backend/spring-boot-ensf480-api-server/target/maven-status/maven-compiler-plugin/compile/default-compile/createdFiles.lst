@@ -1,5 +1,7 @@
+com\example\spring_boot_ensf480_api_server\controllers\TicketController.class
 com\example\spring_boot_ensf480_api_server\repositories\ShowRepository.class
 com\example\spring_boot_ensf480_api_server\repositories\SeatRepository.class
+com\example\spring_boot_ensf480_api_server\repositories\TicketRepository.class
 com\example\spring_boot_ensf480_api_server\repositories\UserRepository.class
 com\example\spring_boot_ensf480_api_server\models\Theater.class
 com\example\spring_boot_ensf480_api_server\controllers\SeatController.class
@@ -7,6 +9,7 @@ com\example\spring_boot_ensf480_api_server\SpringBootEnsf480ApiServerApplication
 com\example\spring_boot_ensf480_api_server\controllers\TheaterController.class
 com\example\spring_boot_ensf480_api_server\repositories\TheaterRepository.class
 com\example\spring_boot_ensf480_api_server\models\Seat.class
+com\example\spring_boot_ensf480_api_server\models\Ticket.class
 com\example\spring_boot_ensf480_api_server\models\User.class
 com\example\spring_boot_ensf480_api_server\models\Show.class
 com\example\spring_boot_ensf480_api_server\controllers\ShowController.class
