@@ -34,6 +34,10 @@ public class SignUpPage {
         JLabel lastNameLabel = new JLabel("Last Name:");
         JLabel emailLabel = new JLabel("Email:");
         JLabel passwordLabel = new JLabel("Password:");
+        firstNameLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        lastNameLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        emailLabel.setFont(new Font("Arial", Font.BOLD, 32));
+        passwordLabel.setFont(new Font("Arial", Font.BOLD, 32));
         
         // Text fields for user input
         JTextField firstNameField = new JTextField();

@@ -36,6 +36,12 @@ public class Movie {
     public String getDirector() {
         return this.director;
     }
+    public ArrayList<Showtime> getShowTimes(){
+        return showtimes;
+    }
+    public void setShowtimes(ArrayList<Showtime> showtimes){
+        this.showtimes = showtimes;
+    }
 
     // Method to print movie info
     public void printMovieInfo() {

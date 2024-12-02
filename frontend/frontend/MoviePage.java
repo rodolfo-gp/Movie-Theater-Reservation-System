@@ -2,10 +2,11 @@ package frontend;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 public class MoviePage {
+
+    public static Theater selectedTheater;
 
     public void createWindow() {
         // Create the main frame for the movie page
@@ -19,23 +20,29 @@ public class MoviePage {
         JPanel moviePanel = new JPanel();
         moviePanel.setLayout(new BoxLayout(moviePanel, BoxLayout.Y_AXIS));
 
-
         ArrayList<Movie> movieList = Movie.getMovies();
-        
+
+        if (selectedTheater == null) {  // If no theater selected, default to the first theater
+            selectedTheater = new Theater();
+            selectedTheater.setTheaterId(1);
+            selectedTheater.setName("Cineplex Calgary Default");
+            selectedTheater.setLocation("123 Default St");
+        }
 
         // --- Display Movies ---
         for (Movie movie : movieList) {
             JPanel row = new JPanel(new BorderLayout());
-            row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
-            row.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            row.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
+            row.setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.BLACK));
 
             JLabel name = new JLabel(movie.getName());
-            name.setFont(new Font("Arial", Font.BOLD, 16));
+            name.setFont(new Font("Arial", Font.BOLD, 32));
             row.add(name, BorderLayout.WEST);
 
             JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
             JButton detailButton = new JButton("Movie Details");
+            detailButton.setFont(new Font("Arial", Font.BOLD, 24));
             detailButton.addActionListener(e -> {
                 MovieDetails details = new MovieDetails();
                 details.createWindow(movie);
@@ -43,9 +50,10 @@ public class MoviePage {
             });
 
             JButton buyTicketButton = new JButton("Buy Ticket");
+            buyTicketButton.setFont(new Font("Arial", Font.BOLD, 24));
             buyTicketButton.addActionListener(e -> {
                 ShowtimeDisplay s = new ShowtimeDisplay();
-                s.show_Showtimes(movie);
+                s.show_Showtimes(movie, selectedTheater);
                 System.out.println("Buy ticket clicked for: " + movie.getName());
             });
 
@@ -65,8 +73,23 @@ public class MoviePage {
         // Add the scroll pane to the frame
         moviePage.add(scrollPane, BorderLayout.CENTER);
 
+        // --- Display Selected Theater Information ---
+        JPanel theaterInfoPanel = new JPanel();
+        theaterInfoPanel.setLayout(new GridLayout(2, 1));
+        theaterInfoPanel.setBorder(BorderFactory.createTitledBorder("Selected Theater"));
+
+        JLabel theaterNameLabel = new JLabel("Theater: " + selectedTheater.getName());
+        theaterNameLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        theaterInfoPanel.add(theaterNameLabel);
+
+        JLabel theaterLocationLabel = new JLabel("Address: " + selectedTheater.getLocation());
+        theaterLocationLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+        theaterInfoPanel.add(theaterLocationLabel);
+
+        moviePage.add(theaterInfoPanel, BorderLayout.NORTH);
+
         // Add "Browse Theaters" button at the bottom
-        JButton browseTheatersButton = new JButton("Browse Theaters");
+        JButton browseTheatersButton = new JButton("Browse Theaters");////////////////////////////////This needs revamp
         browseTheatersButton.setPreferredSize(new Dimension(moviePage.getWidth(), 50));
         browseTheatersButton.addActionListener(e -> {
             ArrayList<Theater> theaterList = new ArrayList<>();  // Populate this with actual data
@@ -75,6 +98,7 @@ public class MoviePage {
             t.createWindow(theaterList);
             moviePage.dispose();
         });
+
         moviePage.add(browseTheatersButton, BorderLayout.SOUTH);
 
         // Make the frame visible
