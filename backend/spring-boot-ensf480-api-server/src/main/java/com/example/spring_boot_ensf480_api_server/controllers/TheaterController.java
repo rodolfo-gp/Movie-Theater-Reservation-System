@@ -26,15 +26,11 @@ public class TheaterController {
     
     //find all the theaters
     @GetMapping("/")
-    public ArrayList<Theater> findAllTheaters(){
-        return (ArrayList<Theater>) theaterRepository.findAll();
+    public List<Theater> getAllTheaters() {
+         return theaterRepository.findAll();
     }
 
-    //find all the theaters
-    @GetMapping("/get")
-    public ArrayList<Theater> getTheater(){
-        return (ArrayList<Theater>) theaterRepository.findAll();
-    }
+
 
      // Get all theaters showing movie
     @GetMapping("/{movieName}")
