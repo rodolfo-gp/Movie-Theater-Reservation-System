@@ -15,7 +15,7 @@ public class SeatWindow  {
     
     public void createSeats(String showtime) {
 
-        ArrayList<Seat> seatList = Seat.getSeatsForShowtime(showtime);
+       /* ArrayList<Seat> seatList = Seat.getSeatsForShowtime(showtime);
         ArrayList<ArrayList<Seat>> seatMap = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             ArrayList<Seat> row = new ArrayList<>();
@@ -23,20 +23,21 @@ public class SeatWindow  {
                 row.add(seatList.get( i + j * 15));
             }
             seatMap.add(row);
-        }
+        } */
+
         //GET SEAT MAP
         //this is mock data
-        /*ArrayList<ArrayList<Seat>> seatMap = new ArrayList<>();
+        ArrayList<ArrayList<Seat>> seatMap = new ArrayList<>();
         char rowChar = 'A';
 
         for (int i = 0; i < 5; i++) {
             ArrayList<Seat> row = new ArrayList<>();
             for (int j = 1; j <= 15; j++) {
-                row.add(new Seat(rowChar, j));
+                row.add(new Seat(rowChar, j, false));
             }
             seatMap.add(row);
             rowChar++; 
-        }*/
+        }
 
         JFrame seatPage =  new JFrame();
 
