@@ -15,17 +15,6 @@ public class ShowtimeDisplay {
         showtimePage.setLayout(new BorderLayout());
         showtimePage.setLocationRelativeTo(null);
 
-        JButton confirm = new JButton("Confirm Showtime");
-        confirm.setFont(new Font("Arial", Font.BOLD, 16));
-        confirm.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showtimePage.dispose();
-                SeatWindow s = new SeatWindow();
-                s.createSeats();
-            }
-        });
-
         JButton back = new JButton("Back");
         back.setFont(new Font("Arial", Font.BOLD, 16));
         back.addActionListener(new ActionListener() {
@@ -36,7 +25,6 @@ public class ShowtimeDisplay {
         });
 
         showtimePage.add(back, BorderLayout.LINE_END);
-        showtimePage.add(confirm, BorderLayout.PAGE_END);
 
         ArrayList<Showtime> shows = Showtime.getShowTimes(le_movie, currtheater);
 
@@ -51,6 +39,19 @@ public class ShowtimeDisplay {
 
         JComboBox<String> showsBox = new JComboBox<String>(showtimes_final);
         showtimePage.add(showsBox, BorderLayout.PAGE_START);
+
+        JButton confirm = new JButton("Confirm Showtime");
+        confirm.setFont(new Font("Arial", Font.BOLD, 16));
+        confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showtimePage.dispose();
+                SeatWindow s = new SeatWindow();
+                s.createSeats(showsBox.getSelectedItem().toString());
+            }
+        });
+        showtimePage.add(confirm, BorderLayout.PAGE_END);
+
         showtimePage.setVisible(true);
     }
 }

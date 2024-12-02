@@ -13,12 +13,20 @@ import java.util.List;
 
 public class SeatWindow  {
     
-    public void createSeats() {
+    public void createSeats(String showtime) {
 
-
+        ArrayList<Seat> seatList = Seat.getSeatsForShowtime(showtime);
+        ArrayList<ArrayList<Seat>> seatMap = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            ArrayList<Seat> row = new ArrayList<>();
+            for (int j = 0; j < 15; j++) {
+                row.add(seatList.get( i + j * 15));
+            }
+            seatMap.add(row);
+        }
         //GET SEAT MAP
         //this is mock data
-        ArrayList<ArrayList<Seat>> seatMap = new ArrayList<>();
+        /*ArrayList<ArrayList<Seat>> seatMap = new ArrayList<>();
         char rowChar = 'A';
 
         for (int i = 0; i < 5; i++) {
@@ -28,7 +36,7 @@ public class SeatWindow  {
             }
             seatMap.add(row);
             rowChar++; 
-        }
+        }*/
 
         JFrame seatPage =  new JFrame();
 
@@ -46,7 +54,7 @@ public class SeatWindow  {
         // Add buttons for each seat
         for (ArrayList<Seat> row : seatMap) {
             for (Seat seat : row) {
-                JButton seatButton = new JButton(seat.getRow() + "" + seat.getNumber());
+                JButton seatButton = new JButton(seat.getRow() + "" + seat.getCloumn());
                 seatButton.setFont(new Font("Arial", Font.BOLD, 24));
                 seatButton.setOpaque(true);
                 seatButton.setBorderPainted(false);

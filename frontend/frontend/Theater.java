@@ -76,7 +76,7 @@ public class Theater {
 
     public static void getTheater(){
         try { // The URL to your theater endpoint 
-            URL url = new URL("http://localhost:8080/theaters"); 
+            URL url = new URL("http://localhost:8080/theaters/"); 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection(); 
             conn.setRequestMethod("GET"); 
             // GET method to retrieve the theater 
@@ -94,7 +94,7 @@ public class Theater {
                 // Close Connection
                 in.close(); 
                 conn.disconnect(); 
-                System.out.println("Movies: " + content.toString());
+                System.out.println("Theater " + content.toString());
              }
     
             }catch (Exception e) {
