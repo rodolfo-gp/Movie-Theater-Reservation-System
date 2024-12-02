@@ -1,3 +1,4 @@
+-- Drop the existing database if it exists and create a new one
 DROP DATABASE IF EXISTS ensf480_term_project_movies_db;
 CREATE DATABASE ensf480_term_project_movies_db;
 
@@ -71,6 +72,17 @@ CREATE TABLE Registered_Users (
     PRIMARY KEY (email)
 );
 
+-- Create CreditCards table
+DROP TABLE IF EXISTS CreditCards;
+CREATE TABLE CreditCards (
+    CardId INT AUTO_INCREMENT PRIMARY KEY,
+    CardNumber VARCHAR(16) NOT NULL,
+    ExpirationDate DATE NOT NULL,
+    CVV INT NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    CONSTRAINT fk_Email FOREIGN KEY (email) REFERENCES Registered_Users(email) ON DELETE CASCADE
+);
+
 -- Create Tickets table
 DROP TABLE IF EXISTS Tickets;
 CREATE TABLE Tickets (
@@ -85,17 +97,7 @@ CREATE TABLE Tickets (
     FOREIGN KEY (show_id, ticket_price) REFERENCES Shows(show_id, ticket_price)
 );
 
--- Create CreditCards table
-DROP TABLE IF EXISTS CreditCards;
-CREATE TABLE CreditCards (
-    CardId INT AUTO_INCREMENT PRIMARY KEY,
-    CardNumber VARCHAR(16) NOT NULL,
-    ExpirationDate DATE NOT NULL,
-    CVV INT NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    CONSTRAINT fk_Email FOREIGN KEY (email) REFERENCES Registered_Users(email) ON DELETE CASCADE
-);
-
+-- Create Seats table
 DROP TABLE IF EXISTS Seats;
 CREATE TABLE Seats (
     id INT NOT NULL,                        
