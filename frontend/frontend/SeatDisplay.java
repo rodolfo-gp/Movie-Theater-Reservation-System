@@ -49,20 +49,20 @@ public class SeatDisplay extends JFrame {
         return String.format("Seat %c%d\n%s", seat.getRow(), seat.getCloumn(), status);
     }
 
-    public static void main(String[] args) {
-        // Sample 2D array of Seat objects for testing
-        Seat[][] seats = {
-            { new Seat('A', 1), new Seat('A', 2), new Seat('A', 3) },
-            { new Seat('B', 1), new Seat('B', 2), new Seat('B', 3) },
-            { new Seat('C', 1), new Seat('C', 2), new Seat('C', 3) }
-        };
+    // public static void main(String[] args) {
+    //     // Sample 2D array of Seat objects for testing
+    //     Seat[][] seats = {
+    //         { new Seat('A', 1), new Seat('A', 2), new Seat('A', 3) },
+    //         { new Seat('B', 1), new Seat('B', 2), new Seat('B', 3) },
+    //         { new Seat('C', 1), new Seat('C', 2), new Seat('C', 3) }
+    //     };
 
-        // Mark some seats as booked for demonstration
-        seats[0][1].setBooked(true);
-        seats[2][2].setBooked(true);
+    //     // Mark some seats as booked for demonstration
+    //     seats[0][1].setBooked(true);
+    //     seats[2][2].setBooked(true);
 
-        // Display the seats in a JFrame
-        SwingUtilities.invokeLater(() -> new SeatDisplay(seats));
-    }
+    //     // Display the seats in a JFrame
+    //     SwingUtilities.invokeLater(() -> new SeatDisplay(seats));
+    // }
 }
 

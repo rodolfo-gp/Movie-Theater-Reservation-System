@@ -32,7 +32,7 @@ public class TheaterDisplay {
                 public void actionPerformed(ActionEvent e) {
                     theaterPage.setVisible(false);
                     MoviePage m = new  MoviePage();
-                    m.createWindow(theater);
+                    m.createWindow();
                     
                 }
             });
@@ -73,9 +73,9 @@ public class TheaterDisplay {
         theaterPage.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        TheaterDisplay test = new TheaterDisplay();
-        test.createWindow();
-    }
+    // public static void main(String[] args) {
+    //     TheaterDisplay test = new TheaterDisplay();
+    //     test.createWindow();
+    // }
 }
 
