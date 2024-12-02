@@ -19,25 +19,14 @@ public class PurchaseTicket {
         JPanel purchasePanel = new JPanel();
         purchasePanel.setLayout(new BoxLayout(purchasePanel, BoxLayout.Y_AXIS)); 
 
-        JTextField email_Field = new JTextField();
         JTextField card_digit_Field = new JTextField();
         JTextField ccv_code_Field = new JTextField();
         JButton submit = new JButton("Submit");
         JButton back = new JButton("Back");
         submit.setFont(new Font("Arial", Font.BOLD, 24));
         back.setFont(new Font("Arial", Font.BOLD, 24));
-
-        JLabel text = new JLabel("Email");
-        text.setFont(new Font("Arial", Font.BOLD, 16));
-        text.setAlignmentX(Component.LEFT_ALIGNMENT);
-        email_Field.setAlignmentX(Component.CENTER_ALIGNMENT); 
-        email_Field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
-        email_Field.setAlignmentY(0);
-        email_Field.setBorder(BorderFactory.createMatteBorder(10, 10, 10, 10, Color.BLACK));
-        purchasePanel.add(text);
-        purchasePanel.add(email_Field);
         
-        text = new JLabel("Card Number");
+        JLabel text = new JLabel("Card Number");
         text.setFont(new Font("Arial", Font.BOLD, 16));
         card_digit_Field.setAlignmentX(Component.CENTER_ALIGNMENT);
         card_digit_Field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
@@ -68,10 +57,9 @@ public class PurchaseTicket {
             @Override
             public void actionPerformed(ActionEvent e) {
                 purchasePage.dispose();
-                String email = email_Field.getText();
                 String code = card_digit_Field.getText();
                 TicketDetail td = new TicketDetail();
-                td.createReceipt(tck, email, code);
+                td.createReceipt(tck, null, code);
             }
         });
 
