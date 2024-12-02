@@ -1,12 +1,13 @@
 package com.example.spring_boot_ensf480_api_server.models;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
 
 @Entity
 @Table(name = "Seats")
@@ -25,14 +26,27 @@ public class Seat implements Serializable{
     private boolean booked;
 
     @Column(name = "showroom_id")
-    private Integer showroom_id;
+    private short showroom_id;
 
-    @Column(name = "dateAndTime")
-    private LocalDateTime dateAndTime;
+    @Column(name = "theater_id")
+    private int theater_id;
+
+    @Column(name = "date_and_time", columnDefinition = "DATETIME") 
+    private LocalDateTime date_and_time;
     
     public Seat(){
         
     }
+
+    public Seat(int id, int seat_row, int seat_column, boolean booked, short showroom_id, int theater_id, LocalDateTime date_and_time) { 
+        this.id = id; 
+        this.seat_row = seat_row;
+        this.seat_column = seat_column;
+        this.booked = booked; 
+        this.showroom_id = showroom_id;
+        this.theater_id = theater_id;
+        this.date_and_time = date_and_time; }
+
     public int getid() {
         return this.id;
     }
@@ -65,19 +79,21 @@ public class Seat implements Serializable{
         this.booked = booked;
     }
 
-    public Integer getShowroomId() {
+    public short getShowroomId() {
         return showroom_id;
     }
 
-    public void setShowroomId(Integer showroomId) {
+    public void setShowroomId(short showroomId) {
         this.showroom_id = showroomId;
     }
 
     public LocalDateTime getDateAndTime() {
-        return dateAndTime;
+        return date_and_time;
     }
 
-    public void setDateAndTime(LocalDateTime dateAndTime) {
-        this.dateAndTime = dateAndTime;
+    public void setDateAndTime(LocalDateTime date_and_time) {
+        this.date_and_time = date_and_time;
     }
+
+    
 }

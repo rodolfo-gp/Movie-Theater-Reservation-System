@@ -65,7 +65,7 @@ VALUES
     (4, 5, @show_id_bossbaby, 6.80, 'obamna@gov.ca');      -- Barrack booking for Boss Baby
 
 
-INSERT INTO Seats (id, seat_row, seat_column, booked, showroom_id, theater_id, dateAndTime)
+INSERT INTO Seats (id, seat_row, seat_column, booked, showroom_id, theater_id, date_and_time)
 VALUES 
     (11, 1, 1, FALSE, 1, 1, '2024-12-25 18:00:00'),
     (12, 1, 2, FALSE, 1, 1, '2024-12-25 18:00:00'),

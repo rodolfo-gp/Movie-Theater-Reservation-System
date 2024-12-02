@@ -104,7 +104,7 @@ CREATE TABLE Seats (
     booked BOOLEAN DEFAULT FALSE,           
     showroom_id SMALLINT NOT NULL,          
     theater_id INT NOT NULL,                
-    dateAndTime DATETIME NOT NULL,          
+    date_and_time DATETIME NOT NULL,          
     PRIMARY KEY (id),                       
     CONSTRAINT fk_showroom FOREIGN KEY (showroom_id, theater_id) 
         REFERENCES Showrooms(showroom_id, theater_id) 

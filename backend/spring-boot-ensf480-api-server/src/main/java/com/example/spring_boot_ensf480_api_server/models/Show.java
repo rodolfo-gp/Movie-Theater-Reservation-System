@@ -27,8 +27,8 @@ public class Show {
     @Column(name = "movie_name", nullable = false)
     private String movieName;  // Foreign key to Movies table
 
-    @Column(name = "date_and_time")
-    private LocalDateTime dateAndTime;  // Corresponds to TIMESTAMP
+    @Column(name = "dateAndTime", columnDefinition = "DATETIME") 
+    private LocalDateTime dateAndTime;
 
     // Getters and Setters
 
