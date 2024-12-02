@@ -5,5 +5,5 @@ This is our front end app:
         2. javac -d bin -Xlint:deprecation frontend/*.java
 
         3. run it:
-            java -cp bin frontend.StartUp
+            java -cp bin frontend.Startup 
 
