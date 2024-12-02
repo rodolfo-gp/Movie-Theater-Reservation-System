@@ -37,7 +37,8 @@ public class Seat {
         ArrayList<Seat> seats = new ArrayList<Seat>();
         try {
             // The URL to your seat endpoint, including the showtime path variable
-            String urlStr = "http://localhost:8080/seat/" + showtime.replace(" ", "%20") + "/";
+            //.replace(" ", "T")
+            String urlStr = "http://localhost:8080/Seat/" + showtime.replace(" ", "T")+":00";
             URL url = new URL(urlStr);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
