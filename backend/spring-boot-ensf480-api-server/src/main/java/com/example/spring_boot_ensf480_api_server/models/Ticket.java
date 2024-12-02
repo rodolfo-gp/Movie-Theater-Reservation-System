@@ -74,4 +74,13 @@ public class Ticket {
     public void setCustomerEmail(String customerEmail) {
         this.customerEmail = customerEmail;
     }
+    // Method to print all data members to the terminal
+    public void printTicketDetails() {
+        System.out.println("Ticket ID: " + ticketId);
+        System.out.println("Seat Row: " + seatRow);
+        System.out.println("Seat Column: " + seatColumn);
+        System.out.println("Show ID: " + showId);
+        System.out.println("Ticket Price: " + ticketPrice);
+        System.out.println("Customer Email: " + customerEmail);
+    }
 }

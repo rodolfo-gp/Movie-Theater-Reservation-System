@@ -39,6 +39,7 @@ public class TicketController {
     @PostMapping("/")
 public ResponseEntity<String> createTicket(@RequestBody Ticket ticket) {
     // Validate ticket price
+    ticket.printTicketDetails();
     if (ticket.getTicketPrice() == null) {
         return new ResponseEntity<>("Ticket price is required.", HttpStatus.BAD_REQUEST);
     }
