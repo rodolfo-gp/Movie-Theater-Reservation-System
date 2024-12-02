@@ -5,11 +5,10 @@ import java.util.ArrayList;
 
 public class SeatDisplay extends JFrame {
 
-    private ArrayList<Seat> seats = Seat.getseats();
     //private Seat[][] seats;
 
-    public SeatDisplay(ArrayList<Seat> seats) {
-        this.seats = seats;
+    public SeatDisplay(String showtime) {
+        ArrayList<Seat> seats = Seat.getSeatsForShowtime(showtime);
         setTitle("Seat Display");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,7 +46,7 @@ public class SeatDisplay extends JFrame {
     // Helper method to format the seat label text
     private String seatLabelText(Seat seat) {
         String status = seat.getBooked() ? "Booked" : "Available";
-        return String.format("Seat %c%d\n%s", seat.getRow(), seat.getNumber(), status);
+        return String.format("Seat %c%d\n%s", seat.getRow(), seat.getCloumn(), status);
     }
 
     public static void main(String[] args) {
