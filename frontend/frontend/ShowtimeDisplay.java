@@ -16,6 +16,7 @@ public class ShowtimeDisplay {
         showtimePage.setLocationRelativeTo(null);
 
         JButton confirm = new JButton("Confirm Showtime");
+        confirm.setFont(new Font("Arial", Font.BOLD, 16));
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -25,6 +26,16 @@ public class ShowtimeDisplay {
             }
         });
 
+        JButton back = new JButton("Back");
+        back.setFont(new Font("Arial", Font.BOLD, 16));
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showtimePage.dispose();
+            }
+        });
+
+        showtimePage.add(back, BorderLayout.LINE_END);
         showtimePage.add(confirm, BorderLayout.PAGE_END);
 
         ArrayList<Showtime> shows = Showtime.getShowTimes(le_movie, currtheater);

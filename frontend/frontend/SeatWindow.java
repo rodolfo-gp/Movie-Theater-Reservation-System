@@ -21,9 +21,9 @@ public class SeatWindow  {
         ArrayList<ArrayList<Seat>> seatMap = new ArrayList<>();
         char rowChar = 'A';
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             ArrayList<Seat> row = new ArrayList<>();
-            for (int j = 1; j <= 5; j++) {
+            for (int j = 1; j <= 15; j++) {
                 row.add(new Seat(rowChar, j));
             }
             seatMap.add(row);
@@ -34,9 +34,14 @@ public class SeatWindow  {
 
         seatPage.setTitle("Seat Booking System");
         seatPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        seatPage.setSize(800, 600);
-        seatPage.setLayout(new GridLayout(4, 5, 5, 5)); // Grid layout for the seats
+        seatPage.setSize(1300, 750);
+        seatPage.setLayout(new BorderLayout());
         seatPage.setLocationRelativeTo(null);
+
+        JPanel seatMapPanel = new JPanel();
+        seatMapPanel.setSize(1300, 600);
+        seatMapPanel.setLayout(new GridLayout(5, 15, 5, 5)); // Grid layout for the seats
+        
 
         // Add buttons for each seat
         for (ArrayList<Seat> row : seatMap) {
@@ -59,10 +64,20 @@ public class SeatWindow  {
                     }
                 });
 
-                seatPage.add(seatButton);
+                seatMapPanel.add(seatButton);
             }
         }
 
+        JButton back = new JButton("Back");
+        back.setFont(new Font("Arial", Font.BOLD, 16));
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seatPage.dispose();
+            }
+        });
+        seatPage.add(seatMapPanel);
+        seatPage.add(back, BorderLayout.SOUTH);
         seatPage.setVisible(true); // Display the JFrame
     }
 
