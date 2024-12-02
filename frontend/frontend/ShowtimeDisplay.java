@@ -13,7 +13,7 @@ public class ShowtimeDisplay {
         showtimePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         showtimePage.setSize(300, 150);
         showtimePage.setLayout(new BorderLayout());
-
+        showtimePage.setLocationRelativeTo(null);
 
         JButton confirm = new JButton("Confirm Showtime");
         confirm.addActionListener(new ActionListener() {

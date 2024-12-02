@@ -18,9 +18,10 @@ public class TicketDetail {
 
         // Create a JFrame
         JFrame receiptFrame = new JFrame("Receipt");
-        receiptFrame.setSize(400, 500);
+        receiptFrame.setSize(400, 300);
         receiptFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         receiptFrame.setLayout(new BorderLayout());
+        receiptFrame.setLocationRelativeTo(null);
 
         // Add a title label
         JLabel titleLabel = new JLabel("Receipt", SwingConstants.CENTER);
@@ -53,12 +54,13 @@ public class TicketDetail {
         detailsPanel.add(cardLabel);
 
         // Add total price if available in the Ticket object
-        JLabel priceLabel = new JLabel("Total Price: $" + tck.getPrice()); // Assuming Ticket has a getPrice() method
+        JLabel priceLabel = new JLabel("Total Price: $" + tck.getPrice()); 
         priceLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         detailsPanel.add(priceLabel);
 
         // Add a button to close the receipt
         JButton closeButton = new JButton("Close");
+        closeButton.setFont(new Font("Arial", Font.BOLD, 24 ));
         closeButton.addActionListener(e -> receiptFrame.dispose());
         detailsPanel.add(Box.createVerticalStrut(10)); // Add some space
         detailsPanel.add(closeButton);

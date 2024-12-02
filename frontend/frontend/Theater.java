@@ -1,5 +1,9 @@
 package frontend;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Theater {
@@ -70,5 +74,34 @@ public class Theater {
         this.movies.add(newMovie);
     }
 
+    public static void getTheater(){
+        try { // The URL to your theater endpoint 
+            URL url = new URL("http://localhost:8080/theater/"); 
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection(); 
+            conn.setRequestMethod("GET"); 
+            // GET method to retrieve the theater 
+            conn.setRequestProperty("Content-Type", "application/json"); 
+            // Check the response code 
+            int responseCode = conn.getResponseCode(); 
+            System.out.println("Response Code: " + responseCode); 
+            if (responseCode == HttpURLConnection.HTTP_OK) { 
+                // success 
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine; StringBuilder content = new StringBuilder(); 
+                while ((inputLine = in.readLine()) != null) { 
+                    content.append(inputLine); 
+                }
+                // Close Connection
+                in.close(); 
+                conn.disconnect(); 
+                System.out.println("Movies: " + content.toString());
+             }
     
+            }catch (Exception e) {
+                 e.printStackTrace(); }
+        }
+
+    public static void main(String[] args) {
+        Theater.getTheater();
+    }
 }

@@ -12,8 +12,9 @@ public class PurchaseTicket {
         JFrame purchasePage = new JFrame();
         purchasePage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         purchasePage.setLocationRelativeTo(null);  // Center the window
-        purchasePage.setSize(600, 900);
+        purchasePage.setSize(600, 500);
         purchasePage.setLayout(new BorderLayout());
+        purchasePage.setLocationRelativeTo(null);
 
         JPanel purchasePanel = new JPanel();
         purchasePanel.setLayout(new BoxLayout(purchasePanel, BoxLayout.Y_AXIS)); 
@@ -21,10 +22,13 @@ public class PurchaseTicket {
         JTextField email_Field = new JTextField();
         JTextField card_digit_Field = new JTextField();
         JTextField ccv_code_Field = new JTextField();
-        JButton submit = new JButton("submit");
+        JButton submit = new JButton("Submit");
         JButton back = new JButton("Back");
+        submit.setFont(new Font("Arial", Font.BOLD, 24));
+        back.setFont(new Font("Arial", Font.BOLD, 24));
 
         JLabel text = new JLabel("Email");
+        text.setFont(new Font("Arial", Font.BOLD, 16));
         text.setAlignmentX(Component.LEFT_ALIGNMENT);
         email_Field.setAlignmentX(Component.CENTER_ALIGNMENT); 
         email_Field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
@@ -34,6 +38,7 @@ public class PurchaseTicket {
         purchasePanel.add(email_Field);
         
         text = new JLabel("Card Number");
+        text.setFont(new Font("Arial", Font.BOLD, 16));
         card_digit_Field.setAlignmentX(Component.CENTER_ALIGNMENT);
         card_digit_Field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
         card_digit_Field.setAlignmentY(200);
@@ -42,6 +47,7 @@ public class PurchaseTicket {
         purchasePanel.add(card_digit_Field);
 
         text = new JLabel("CCV");
+        text.setFont(new Font("Arial", Font.BOLD, 16));
         ccv_code_Field.setAlignmentX(Component.CENTER_ALIGNMENT); 
         ccv_code_Field.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80)); 
         ccv_code_Field.setAlignmentY(400);
@@ -80,7 +86,7 @@ public class PurchaseTicket {
             }
         });
 
-        
+
         purchasePanel.add(submit);
         purchasePanel.add(back);
 
