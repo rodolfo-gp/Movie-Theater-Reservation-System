@@ -1,12 +1,14 @@
 package frontend;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class SeatDisplay extends JFrame {
 
-    private Seat[][] seats;
+    private ArrayList<Seat> seats = Seat.getseats();
+    //private Seat[][] seats;
 
-    public SeatDisplay(Seat[][] seats) {
+    public SeatDisplay(ArrayList<Seat> seats) {
         this.seats = seats;
         setTitle("Seat Display");
         setSize(400, 300);
@@ -15,12 +17,12 @@ public class SeatDisplay extends JFrame {
 
         // Create a panel to hold the seats in a grid layout
         JPanel seatPanel = new JPanel();
-        seatPanel.setLayout(new GridLayout(seats.length, seats[0].length, 5, 5));
+        seatPanel.setLayout(new GridLayout(5,15, 5, 5));
 
         // Add each seat to the grid
-        for (int i = 0; i < seats.length; i++) {
-            for (int j = 0; j < seats[i].length; j++) {
-                Seat seat = seats[i][j];
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 15; j++) {
+                Seat seat = seats.get( i + j * 15);
                 JLabel seatLabel = new JLabel(seatLabelText(seat), SwingConstants.CENTER);
 
                 // Set background color based on booking status
