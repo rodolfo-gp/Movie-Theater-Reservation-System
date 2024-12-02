@@ -14,7 +14,7 @@ import com.example.spring_boot_ensf480_api_server.repositories.TheaterRepository
 
 
 @RestController
-@RequestMapping("/theater")
+@RequestMapping("/theaters")
 
 public class TheaterController {
 
@@ -29,8 +29,15 @@ public class TheaterController {
     public ArrayList<Theater> findAllTheaters(){
         return (ArrayList<Theater>) theaterRepository.findAll();
     }
+
+    //find all the theaters
+    @GetMapping("/get")
+    public ArrayList<Theater> getTheater(){
+        return (ArrayList<Theater>) theaterRepository.findAll();
+    }
+
      // Get all theaters showing movie
-    @GetMapping("/theater/{movieName}")
+    @GetMapping("/{movieName}")
     public List<Theater> getTheatersByMovieName(@PathVariable String movieName) {
         return theaterRepository.findByMovies_MovieName(movieName);
     }
