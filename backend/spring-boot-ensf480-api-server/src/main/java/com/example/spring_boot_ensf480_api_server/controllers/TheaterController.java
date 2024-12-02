@@ -1,5 +1,6 @@
 package com.example.spring_boot_ensf480_api_server.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +18,16 @@ import com.example.spring_boot_ensf480_api_server.repositories.TheaterRepository
 
 public class TheaterController {
 
-    private TheaterRepository theaterRepository;
+    private final TheaterRepository theaterRepository;
+
+    public TheaterController(TheaterRepository theaterRepository){
+        this.theaterRepository = theaterRepository;
+    }
     
     //find all the theaters
-    @GetMapping("/theater/findAllTheaters")
-    public List<Theater> findAllTheaters(){
-        return (List<Theater>) theaterRepository.findAll();
+    @GetMapping("/")
+    public ArrayList<Theater> findAllTheaters(){
+        return (ArrayList<Theater>) theaterRepository.findAll();
     }
      // Get all theaters showing movie
     @GetMapping("/theater/{movieName}")
